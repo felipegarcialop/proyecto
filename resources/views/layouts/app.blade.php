@@ -45,6 +45,23 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('temas.index') }}" >Tema</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('encuestas.index') }}" >Encuestas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('preguntas.index') }}" >Preguntas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('repuestas.index') }}" >Respuestas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('ponderaciones.index') }}" >Ponderacion R</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('cuestionarios.index') }}" >Cuestionarios</a>
+                                </li>
+                               
+                                
                     </ul>
 
                     <!-- Right Side Of Navbar -->

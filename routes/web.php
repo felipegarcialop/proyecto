@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PtemasController;
+use App\Http\Controllers\ItemasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,18 @@ Route::resource('grupos', App\Http\Controllers\GrupoController::class);
 Route::resource('grados', App\Http\Controllers\GradoController::class);
 Route::resource('instituciones', App\Http\Controllers\InstitucioneController::class);
 Route::resource('temas', App\Http\Controllers\TemaController::class);
+Route::resource('encuestas', App\Http\Controllers\EncuestaController::class);
+Route::resource('preguntas', App\Http\Controllers\PreguntaController::class);
+Route::resource('repuestas', App\Http\Controllers\RepuestaController::class);
+Route::resource('ponderaciones', App\Http\Controllers\PonderacioneController::class);
+Route::resource('cuestionarios', App\Http\Controllers\CuestionarioController::class);
+
+Route::get('/PTemas', [PtemasController::class, 'index'])->name('PTemas');
+Route::get('/Itemas/{id}', [ItemasController::class, 'show'])->name('Itemas');
+
+
+
+
+
+
+

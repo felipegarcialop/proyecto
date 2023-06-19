@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tema;
+use App\Models\Repuesta;
 use Illuminate\Http\Request;
 
 /**
- * Class TemaController
+ * Class RepuestaController
  * @package App\Http\Controllers
  */
-class TemaController extends Controller
+class RepuestaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +18,10 @@ class TemaController extends Controller
      */
     public function index()
     {
-        $temas = Tema::paginate();
+        $repuestas = Repuesta::paginate();
 
-        return view('tema.index', compact('temas'))
-            ->with('i', (request()->input('page', 1) - 1) * $temas->perPage());
+        return view('repuesta.index', compact('repuestas'))
+            ->with('i', (request()->input('page', 1) - 1) * $repuestas->perPage());
     }
 
     /**
@@ -31,8 +31,8 @@ class TemaController extends Controller
      */
     public function create()
     {
-        $tema = new Tema();
-        return view('tema.create', compact('tema'));
+        $repuesta = new Repuesta();
+        return view('repuesta.create', compact('repuesta'));
     }
 
     /**
@@ -43,12 +43,12 @@ class TemaController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Tema::$rules);
+        request()->validate(Repuesta::$rules);
 
-        $tema = Tema::create($request->all());
+        $repuesta = Repuesta::create($request->all());
 
-        return redirect()->route('PTemas')
-            ->with('success', 'Tema created successfully.');
+        return redirect()->route('repuestas.index')
+            ->with('success', 'Repuesta created successfully.');
     }
 
     /**
@@ -59,9 +59,9 @@ class TemaController extends Controller
      */
     public function show($id)
     {
-        $tema = Tema::find($id);
+        $repuesta = Repuesta::find($id);
 
-        return view('tema.show', compact('tema'));
+        return view('repuesta.show', compact('repuesta'));
     }
 
     /**
@@ -72,26 +72,26 @@ class TemaController extends Controller
      */
     public function edit($id)
     {
-        $tema = Tema::find($id);
+        $repuesta = Repuesta::find($id);
 
-        return view('tema.edit', compact('tema'));
+        return view('repuesta.edit', compact('repuesta'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Tema $tema
+     * @param  Repuesta $repuesta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tema $tema)
+    public function update(Request $request, Repuesta $repuesta)
     {
-        request()->validate(Tema::$rules);
+        request()->validate(Repuesta::$rules);
 
-        $tema->update($request->all());
+        $repuesta->update($request->all());
 
-        return redirect()->route('temas.index')
-            ->with('success', 'Tema updated successfully');
+        return redirect()->route('repuestas.index')
+            ->with('success', 'Repuesta updated successfully');
     }
 
     /**
@@ -101,9 +101,9 @@ class TemaController extends Controller
      */
     public function destroy($id)
     {
-        $tema = Tema::find($id)->delete();
+        $repuesta = Repuesta::find($id)->delete();
 
-        return redirect()->route('temas.index')
-            ->with('success', 'Tema deleted successfully');
+        return redirect()->route('repuestas.index')
+            ->with('success', 'Repuesta deleted successfully');
     }
 }

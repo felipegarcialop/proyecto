@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Encuesta;
 use App\Models\Tema;
 use Illuminate\Http\Request;
 
 /**
- * Class TemaController
+ * Class EncuestaController
  * @package App\Http\Controllers
  */
-class TemaController extends Controller
+class EncuestaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +19,10 @@ class TemaController extends Controller
      */
     public function index()
     {
-        $temas = Tema::paginate();
+        $encuestas = Encuesta::paginate();
 
-        return view('tema.index', compact('temas'))
-            ->with('i', (request()->input('page', 1) - 1) * $temas->perPage());
+        return view('encuesta.index', compact('encuestas'))
+            ->with('i', (request()->input('page', 1) - 1) * $encuestas->perPage());
     }
 
     /**
@@ -31,8 +32,9 @@ class TemaController extends Controller
      */
     public function create()
     {
-        $tema = new Tema();
-        return view('tema.create', compact('tema'));
+        $encuesta = new Encuesta();
+        $tema = Tema::pluck('Nombre','id');
+        return view('encuesta.create', compact('encuesta','tema'));
     }
 
     /**
@@ -43,12 +45,12 @@ class TemaController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Tema::$rules);
+        request()->validate(Encuesta::$rules);
 
-        $tema = Tema::create($request->all());
+        $encuesta = Encuesta::create($request->all());
 
-        return redirect()->route('PTemas')
-            ->with('success', 'Tema created successfully.');
+        return redirect()->route('encuestas.index')
+            ->with('success', 'Encuesta created successfully.');
     }
 
     /**
@@ -59,9 +61,9 @@ class TemaController extends Controller
      */
     public function show($id)
     {
-        $tema = Tema::find($id);
+        $encuesta = Encuesta::find($id);
 
-        return view('tema.show', compact('tema'));
+        return view('encuesta.show', compact('encuesta'));
     }
 
     /**
@@ -72,26 +74,26 @@ class TemaController extends Controller
      */
     public function edit($id)
     {
-        $tema = Tema::find($id);
+        $encuesta = Encuesta::find($id);
 
-        return view('tema.edit', compact('tema'));
+        return view('encuesta.edit', compact('encuesta'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Tema $tema
+     * @param  Encuesta $encuesta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tema $tema)
+    public function update(Request $request, Encuesta $encuesta)
     {
-        request()->validate(Tema::$rules);
+        request()->validate(Encuesta::$rules);
 
-        $tema->update($request->all());
+        $encuesta->update($request->all());
 
-        return redirect()->route('temas.index')
-            ->with('success', 'Tema updated successfully');
+        return redirect()->route('encuestas.index')
+            ->with('success', 'Encuesta updated successfully');
     }
 
     /**
@@ -101,9 +103,9 @@ class TemaController extends Controller
      */
     public function destroy($id)
     {
-        $tema = Tema::find($id)->delete();
+        $encuesta = Encuesta::find($id)->delete();
 
-        return redirect()->route('temas.index')
-            ->with('success', 'Tema deleted successfully');
+        return redirect()->route('encuestas.index')
+            ->with('success', 'Encuesta deleted successfully');
     }
 }
