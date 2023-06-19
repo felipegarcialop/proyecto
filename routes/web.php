@@ -5,6 +5,8 @@ use App\Http\Controllers\PtemasController;
 use App\Http\Controllers\ItemasController;
 use App\Http\Controllers\PapoyosController;
 use App\Http\Controllers\IapoyosController;
+use App\Http\Controllers\PrecursosController;
+use App\Http\Controllers\IrecursosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +45,9 @@ Route::get('/Itemas/{id}', [ItemasController::class, 'show'])->name('Itemas');
 
 Route::get('/Papoyos', [PapoyosController::class, 'index'])->name('Papoyos');
 Route::get('/Iapoyos/{id}', [IapoyosController::class, 'show'])->name('Iapoyos');
+
+Route::get('/Precursos', [PrecursosController::class, 'index'])->name('Precursos');
+Route::get('/Irecursos/{id}', [IrecursosController::class, 'show'])->name('Irecursos');
 
 
 

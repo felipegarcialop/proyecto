@@ -8,12 +8,10 @@
 <body>
     <h1>Descripción</h1>
 
-    <h2>{{ $dato->Nombre }}</h2>
-    <p>{{ $dato-> Descripción}}</p>
-    <p>{{ $dato-> Dirreccion}}</p>
-    <p>{{ $dato->Telefono }}</p>
-    <p>{{ $dato-> Correo}}</p>
-    
+    <h2>{{ $dato->nombre}}</h2>
+    <p>{{ $dato->objetivo}}</p>
+    <p>{{ $dato->descipcion }}</p>
+
 </body>
 </html>
 @endsection

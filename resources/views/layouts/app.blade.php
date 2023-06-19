@@ -70,7 +70,10 @@
                                     <a class="nav-link" href="{{ route('recusos.index') }}" >Recusos</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('Papoyos') }}" >Recusos</a>
+                                    <a class="nav-link" href="{{ route('Precursos') }}" >PRecursos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('Papoyos') }}" >PApoyos</a>
                                 </li>
                                
                                 

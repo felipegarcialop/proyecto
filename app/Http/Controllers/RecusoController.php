@@ -47,7 +47,7 @@ class RecusoController extends Controller
 
         $recuso = Recuso::create($request->all());
 
-        return redirect()->route('recusos.index')
+        return redirect()->route('Precursos')
             ->with('success', 'Recuso created successfully.');
     }
 
