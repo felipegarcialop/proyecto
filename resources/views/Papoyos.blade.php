@@ -34,10 +34,10 @@
                         <div class="card "style="border:none; background-color: #f8fafc">
                             <div class="card-body">
                                     @foreach ($datos as $dato)
-                                        <a href="{{ route('Itemas', $dato->id) }}">{{ $dato->Nombre }}</a>
+                                        <a href="{{ route('Iapoyos', $dato->id) }}">{{ $dato->Nombre }}</a>
                                     @endforeach
                                     <button class="btn">
-                                    <a href="{{ route('temas.create') }}">
+                                    <a href="{{ route('apoyos.create') }}">
                                         <img src="/imagen/agregar.png" style="widht: 40px; height: 40px">
                                     </a>
                                 </button>

@@ -9,7 +9,7 @@ class PtemasController extends Controller
     //
     public function index()
 {
-    $datos = Tema::select('id', 'Nombre')->get();
+    $datos = Tema::select('id', 'Nombre','Descripcion','Fecha')->get();
 
     return view('PTemas', ['datos' => $datos]);
 }

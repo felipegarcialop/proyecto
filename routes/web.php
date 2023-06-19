@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PtemasController;
 use App\Http\Controllers\ItemasController;
+use App\Http\Controllers\PapoyosController;
+use App\Http\Controllers\IapoyosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,11 +34,15 @@ Route::resource('preguntas', App\Http\Controllers\PreguntaController::class);
 Route::resource('repuestas', App\Http\Controllers\RepuestaController::class);
 Route::resource('ponderaciones', App\Http\Controllers\PonderacioneController::class);
 Route::resource('cuestionarios', App\Http\Controllers\CuestionarioController::class);
+Route::resource('apoyos', App\Http\Controllers\ApoyoController::class);
+Route::resource('recusos', App\Http\Controllers\RecusoController::class);
+
 
 Route::get('/PTemas', [PtemasController::class, 'index'])->name('PTemas');
 Route::get('/Itemas/{id}', [ItemasController::class, 'show'])->name('Itemas');
 
-
+Route::get('/Papoyos', [PapoyosController::class, 'index'])->name('Papoyos');
+Route::get('/Iapoyos/{id}', [IapoyosController::class, 'show'])->name('Iapoyos');
 
 
 

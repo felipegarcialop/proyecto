@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('content')
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +9,9 @@
     <h1>Descripción</h1>
 
     <h2>{{ $dato->Nombre}}</h2>
-    <p>{{ $dato->descripcion }}</p>
-    <p>{{ $dato->fecha }}</p>
+    <p>{{ $dato->Descripcion }}</p>
+    <p>{{ $dato->Fecha }}</p>
 
 </body>
 </html>
+@endsection

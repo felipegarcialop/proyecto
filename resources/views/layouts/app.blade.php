@@ -60,6 +60,18 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('cuestionarios.index') }}" >Cuestionarios</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('PTemas') }}" >PTemas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('apoyos.index') }}" >Apoyos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('recusos.index') }}" >Recusos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('Papoyos') }}" >Recusos</a>
+                                </li>
                                
                                 
                     </ul>
