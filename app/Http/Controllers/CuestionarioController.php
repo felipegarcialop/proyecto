@@ -37,7 +37,7 @@ class CuestionarioController extends Controller
         $cuestionario = new Cuestionario();
         $pregunta= Pregunta::pluck('pregunta','id');
         $respuestas =Repuesta::pluck('Respuestas','id');
-        $ponderaciones= Ponderacione::pluck('ponderacion','id');
+        $ponderaciones= Ponderacione::select("id","ponderacion")->get()->pluck("ponderacion","id");
         return view('cuestionario.create', compact('cuestionario','pregunta','respuestas','ponderaciones'));
     }
 
@@ -113,3 +113,4 @@ class CuestionarioController extends Controller
             ->with('success', 'Cuestionario deleted successfully');
     }
 }
+

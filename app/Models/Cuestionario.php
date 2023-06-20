@@ -63,5 +63,12 @@ class Cuestionario extends Model
         return $this->hasOne('App\Models\Repuesta', 'id', 'repuesta_id');
     }
     
+    public function getPonderacion()
+    {
+        
+            return $this->hasOne(ponderacione::class, 'id', 'ponderaciones_id');
+       
+    }
+
 
 }

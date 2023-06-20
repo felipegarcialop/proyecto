@@ -11,10 +11,10 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Apoyo</span>
+                            <span class="card-title">{{ __('Ver la Institucion de') }} Apoyo</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('apoyos.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('apoyos.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                     </div>
 

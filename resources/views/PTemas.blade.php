@@ -36,11 +36,13 @@
                                     @foreach ($datos as $dato)
                                         <a href="{{ route('Itemas', $dato->id) }}">{{ $dato->Nombre }}</a>
                                     @endforeach
+                                    @role("Administradores")
                                     <button class="btn">
                                     <a href="{{ route('temas.create') }}">
                                         <img src="/imagen/agregar.png" style="widht: 40px; height: 40px">
                                     </a>
-                                </button>
+                                    </button>
+                                    @endrole
                                 
                             </div> 
                         </div> 
