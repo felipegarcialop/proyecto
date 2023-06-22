@@ -5,11 +5,7 @@
     }
 </style>
 @section('content')
-<button class="btn">
-<a href="{{ route('Papoyos') }}">
-<img src="/imagen/agregar.png" style="widht: 20px; height: 20px">Resgresar
-</a>                                    
-</button>
+<a href="{{ route('Papoyos') }}" style="text-decoration: none; color: black"><i class="fa fa-solid fa-arrow-left"></i> Regresar</a>
     <div class= "container">
         <div class="row justify-content-center">
             <div class="col-md-11">

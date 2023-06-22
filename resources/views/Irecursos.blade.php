@@ -1,17 +1,26 @@
 @extends('layouts.app')
+<style>
+    .uppercase-text {
+        text-transform: uppercase;
+    }
+</style>
 @section('content')
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Descripción</title>
-</head>
-<body>
-    <h1>Descripción</h1>
-
-    <h2>{{ $dato->nombre}}</h2>
-    <p>{{ $dato->objetivo}}</p>
-    <p>{{ $dato->descipcion }}</p>
-
-</body>
-</html>
+<a href="{{ route('Precursos') }}" style="text-decoration: none; color: black"><i class="fa fa-solid fa-arrow-left"></i> Regresar</a>
+    <div class= "container">
+        <div class="row justify-content-center">
+            <div class="col-md-11">
+                <div class="card" style="border:none">
+                    <div class="card-body">
+                        <h1 class="text-center uppercase-text">{{ $dato->nombre }}</h1>
+                    </div>
+                    <div class= "card-body">
+                        <p>{{ $dato-> objetivo}}</p>
+                        <p>{{ $dato-> descipcion}}</p>
+                    </div>
+                    <div class= "card-body">
+                        <!--zona para imagen-->
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

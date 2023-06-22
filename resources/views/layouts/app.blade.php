@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -25,37 +27,66 @@
         }
         
         footer {
-            background-color: #e7f0ed;
+            background-color: #f2d8b7f4e7df;
             position: absolute;
             bottom: 0;
             width: 100%;
             height: 55px;
             color: white;
-            z-index: 1; /* Establecer el valor del z-index */
+            z-index: 2; /* Establecer el valor del z-index */
             display: flex; /* Utilizar flexbox */
             justify-content: flex-end; /* Alinear elementos al lado derecho */
         }
         .sidebar {
             background-color: #f8f9fa;
             border-right: 1px solid #dee2e6;
-            min-height: 81vh;
-            z-index: 2; /* Establecer el valor del z-index */
+            min-height: calc(100vh - 55px);
+            z-index: 1; /* Establecer el valor del z-index */
         }
+        
         .content {
             padding: 20px;
             position: relative; /* Establecer la posición relativa */
             z-index: 0; /* Establecer el valor del z-index */
         }
         
+        .nav-linkn {
+            display: block;
+            padding: 0.5rem 0.5rem;
+            border-top: none;
+            border-bottom: none;
+            border-left: none;
+            border-right: 1px solid black;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: block;
+            padding: 1rem 1rem;
+            border-top: none;
+            border-bottom: 1px solid black;
+            border-left: none;
+            border-right: none;
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            border-color: #dddddd;
+        }
+
+        .nav-link.active {
+            background-color: #dddddd;
+            border-color: #aaaaaa;
+            color: #333333;
+}
         
     </style> 
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light" style="background-color: #54789c;">
+        <nav class="navbar navbar-expand-md navbar-light" style="background-color: #0d374f;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{('L') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -66,37 +97,37 @@
                     @role("Administradores")
                     <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('grupos.index') }}" style ="color: white">Grupos</a>
+                                    <a class="nav-linkn" href="{{ route('grupos.index') }}" style ="color: white;">Grupo</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('grados.index') }}" style ="color: white">Grados</a>
+                                    <a class="nav-linkn" href="{{ route('grados.index') }}" style ="color: white">Grado</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('instituciones.index') }}" style ="color: white">Instituciones Educativas</a>
+                                    <a class="nav-linkn" href="{{ route('instituciones.index') }}" style ="color: white">Instituciones Educativas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('temas.index') }}" style ="color: white">Tema</a>
+                                    <a class="nav-linkn" href="{{ route('temas.index') }}" style ="color: white">Tema</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('encuestas.index') }}" style ="color: white">Encuestas</a>
+                                    <a class="nav-linkn" href="{{ route('encuestas.index') }}" style ="color: white">Encuestas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('preguntas.index') }}" style ="color: white">Preguntas</a>
+                                    <a class="nav-linkn" href="{{ route('preguntas.index') }}" style ="color: white">Preguntas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('repuestas.index') }}" style ="color: white">Respuestas</a>
+                                    <a class="nav-linkn" href="{{ route('repuestas.index') }}" style ="color: white">Respuestas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('ponderaciones.index') }}" style ="color: white">Ponderaciones</a>
+                                    <a class="nav-linkn" href="{{ route('ponderaciones.index') }}" style ="color: white">Valores</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('cuestionarios.index') }}" style ="color: white">Cuestionarios</a>
+                                    <a class="nav-linkn" href="{{ route('cuestionarios.index') }}" style ="color: white">Encuestas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('apoyos.index') }}" style ="color: white">Apoyos</a>
+                                    <a class="nav-linkn" href="{{ route('apoyos.index') }}" style ="color: white">Instituciones de apoyo</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('recusos.index') }}" style ="color: white">Recusos</a>
+                                    <a class="nav-linkn" href="{{ route('recusos.index') }}" style ="color: white">Materiales</a>
                                 </li>   
                     </ul>
                     @endrole
@@ -118,8 +149,10 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style ="color: white" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style ="color: white" 
+                                href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <i class="fa fa-regular fa-user"></i>
+                                    {{ Auth::user()->name }} 
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -142,23 +175,25 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-2 sidebar" style="background-color: #7f9bc0">
+                <div class="sidebar" style="background-color: #144b69; width: 250px;">
                     <!-- Contenido del sidebar -->
                     <ul class="nav flex-column">
                     <li class="nav-item">
-                         <a class="nav-link" href="{{ route('PTemas') }}" style="color: white">Temas</a>
+                         <a class="nav-links" href="{{ route('PTemas') }}" style="color: white"><i class="fa fa-regular fa-calendar"></i> Temas</a>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('Papoyos') }}" style="color: white">Instituciones apoyo</a>
+                            <a class="nav-links" href="{{ route('Papoyos') }}" style="color: white"><i class="fa fa-solid fa-landmark"></i> Instituciones de apoyo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('Precursos') }}" style="color: white">Material de apoyo</a>
+                            <a class="nav-links" href="{{ route('Precursos') }}" style="color: white"><i class="fa fa-regular fa-folder"></i> Material de apoyo</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-links" href="#" style="color: white"><i class="fa fa-regular fa-question"></i> Encuestas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" style="color: white">Encuestas</a>
+                            <a class="nav-links" href="#" style="color: white"><i class="fa fa-solid fa-table"></i> Resultados</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" style="color: white">Resultados</a>
-                        </li>
+                        
                         <!-- Agrega más elementos del sidebar si es necesario -->
                     </ul>
                 </div> 

@@ -15,7 +15,7 @@
                             </p>
                         </div>
                         
-                            <img src="/imagen/internet.png"class="card-img-bottom" style="wheight: 400px; height: 300px">
+                            <img src="/imagen/int.jpg"class="card-img-bottom" style="wheight: 400px; height: 400px">
                             
                     </div>
                      
