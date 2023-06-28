@@ -23,17 +23,17 @@
       transition: background-color 0.3s ease;
     }
 
-    .btn-color-1 {background-color: #d44b4d;}
+    .btn-color-1 {background-color: #a5e1e9;}
 
-    .btn-color-2 {background-color: #d8c97f;}
+    .btn-color-2 {background-color: #d5edb9;}
 
-    .btn-color-3 {background-color: #af726e;}
+    .btn-color-3 {background-color: #c4bdf3;}
 
-    .btn-color-4 {background-color: #ed9152;}
+    .btn-color-4 {background-color: #fbe8a4;}
 
-    .btn-color-5 {background-color: #598a52;}
+    .btn-color-5 {background-color: #ffc296;}
 
-    .btn-color-6 {background-color: #c18a90;}
+    .btn-color-6 {background-color: #f9cadc;}
 
     .view-btn:hover {
       opacity: 0.8;

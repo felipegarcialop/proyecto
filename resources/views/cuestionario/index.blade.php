@@ -13,12 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Cuestionario') }}
+                                {{ __('Cuestionarios') }}
                             </span>
 
                              <div class="float-right">
                                 <a href="{{ route('cuestionarios.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                <i class="fa fa-regular fa-plus"></i>{{ __('') }}
                                 </a>
                               </div>
                         </div>
@@ -36,9 +36,9 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Pregunta Id</th>
-										<th>Repuesta Id</th>
-										<th>Ponderaciones Id</th>
+										<th>Preguntas</th>
+										<th>Repuestas</th>
+										<th>Ponderaciones</th>
 
                                         <th></th>
                                     </tr>
@@ -53,12 +53,11 @@
 											<td>{{ $cuestionario->getPonderacion->ponderacion ??'sin ponderacion'}}</td>
 
                                             <td>
-                                                <form action="{{ route('cuestionarios.destroy',$cuestionario->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('cuestionarios.show',$cuestionario->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('cuestionarios.edit',$cuestionario->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('cuestionarios.destroy',$cuestionario->id) }}" method="POST">                                                    
+                                                    <a class="btn btn-sm btn-success" href="{{ route('cuestionarios.edit',$cuestionario->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

@@ -18,7 +18,7 @@
         </div>
 
     </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Guardar') }}</button>
+    <div class="box-footer mt-2 d-md-flex justify-content-md-end">
+        <button type="submit" class="btn btn-primary" style="background-color: #fbcd77;"><i class="fa fa-solid fa-check"></i>{{ __('') }}</button>
     </div>
 </div>

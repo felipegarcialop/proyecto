@@ -100,7 +100,7 @@
                                     <a class="nav-linkn" href="{{ route('grupos.index') }}" style ="color: white;">Grupo</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-linkn" href="{{ route('grados.index') }}" style ="color: white">Grado</a>
+                                    <a class="nav-linkn" href="{{ route('grados.index') }}" style ="color: white">Semestre</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-linkn" href="{{ route('instituciones.index') }}" style ="color: white">Instituciones Educativas</a>
@@ -121,13 +121,13 @@
                                     <a class="nav-linkn" href="{{ route('ponderaciones.index') }}" style ="color: white">Valores</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-linkn" href="{{ route('cuestionarios.index') }}" style ="color: white">Encuestas</a>
+                                    <a class="nav-linkn" href="{{ route('cuestionarios.index') }}" style ="color: white">Cuestionarios</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-linkn" href="{{ route('apoyos.index') }}" style ="color: white">Instituciones de apoyo</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-linkn" href="{{ route('recusos.index') }}" style ="color: white">Materiales</a>
+                                    <a class="nav-linkn" href="{{ route('recusos.index') }}" style ="color: white">Material de apoyo</a>
                                 </li>   
                     </ul>
                     @endrole
