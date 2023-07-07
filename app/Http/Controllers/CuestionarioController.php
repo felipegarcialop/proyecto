@@ -6,6 +6,8 @@ use App\Models\Cuestionario;
 use App\Models\Repuesta;
 use App\Models\Pregunta;
 use App\Models\Ponderacione;
+use App\Models\Tema;
+use App\Models\Encuesta;
 use Illuminate\Http\Request;
 
 /**
@@ -19,6 +21,23 @@ class CuestionarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function mostrarCuestionarios($id)
+{
+    $encuestaId = $id;
+
+    $cuestionarios = Cuestionario::with(['pregunta', 'repuesta', 'ponderacione'])
+        ->whereHas('pregunta.encuesta', function ($query) use ($encuestaId) {
+            $query->where('id', $encuestaId);
+        })
+        ->get();
+
+    $respuestas = Repuesta::all();
+
+    return view('cuestionarios', compact('cuestionarios', 'respuestas'));
+}
+
+    
+
     public function index()
     {
         $cuestionarios = Cuestionario::paginate();

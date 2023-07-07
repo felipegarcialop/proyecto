@@ -94,7 +94,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    @role("Administradores")
+                    @role("Administrador")
                     <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
                                     <a class="nav-linkn" href="{{ route('grupos.index') }}" style ="color: white;">Grupo</a>
@@ -187,9 +187,6 @@
                             <a class="nav-links" href="{{ route('Precursos') }}" style="color: white"><i class="fa fa-regular fa-folder"></i> Material de apoyo</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-links" href="#" style="color: white"><i class="fa fa-regular fa-question"></i> Encuestas</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-links" href="#" style="color: white"><i class="fa fa-solid fa-table"></i> Resultados</a>
                         </li>

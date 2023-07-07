@@ -64,6 +64,7 @@ class EncuestaController extends Controller
         $encuesta = Encuesta::find($id);
 
         return view('encuesta.show', compact('encuesta'));
+        
     }
 
     /**

@@ -16,7 +16,14 @@
                     <div class= "card-body">
                         <p>{{ $dato-> descripcion}}</p>
                         <p>{{ $dato-> Fecha}}</p>
+                        
                     </div>
+
+                     <button class="btn">
+                        <a href='/cuestionario/{{$dato->id}}' class="btn btn-secondary btn-sm float-right"  data-placement="left">
+                            <i class="fa fa-regular fa-plus"></i>
+                        </a>
+                    </button>
                     <div class= "card-body">
                         <!--zona para imagen-->
                 </div>

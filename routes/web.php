@@ -7,6 +7,9 @@ use App\Http\Controllers\PapoyosController;
 use App\Http\Controllers\IapoyosController;
 use App\Http\Controllers\PrecursosController;
 use App\Http\Controllers\IrecursosController;
+use App\Http\Controllers\CuestionarioController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +52,8 @@ Route::get('/Iapoyos/{id}', [IapoyosController::class, 'show'])->name('Iapoyos')
 Route::get('/Precursos', [PrecursosController::class, 'index'])->name('Precursos');
 Route::get('/Irecursos/{id}', [IrecursosController::class, 'show'])->name('Irecursos');
 
+Route::get('/cuestionarioss', [CuestionarioController::class, 'mostrarCuestionarios'])->name('cuestionarios.mostrar');
 
 
-
+Route::get('/cuestionario/{id}',[CuestionarioController::class,'mostrarCuestionarios']);
 

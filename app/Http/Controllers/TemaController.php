@@ -16,6 +16,7 @@ class TemaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         $temas = Tema::paginate();
