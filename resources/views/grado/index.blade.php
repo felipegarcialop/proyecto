@@ -13,7 +13,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Grado') }}
+                                {{ __('Semestres') }}
                             </span>
 
                              <div class="float-right">
@@ -38,7 +38,7 @@
                                         <th>No</th>
                                         
 										<th>Descripcion</th>
-										<th>Grupo Id</th>
+										<th>Grupo</th>
 
                                         <th></th>
                                     </tr>

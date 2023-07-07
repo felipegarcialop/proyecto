@@ -19,6 +19,6 @@
 
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+    <i class="fa fa-solid fa-check"></i><button type="submit" class="btn btn-primary">{{ __('') }}</button>
     </div>
 </div>

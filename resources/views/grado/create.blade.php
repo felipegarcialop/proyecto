@@ -13,7 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Agregar un ') }} grado nuevo</span>
+                        <span class="card-title">{{ __('Agregar un ') }} semestre</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('grados.store') }}"  role="form" enctype="multipart/form-data">
