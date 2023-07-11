@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Cuestionario;
 use App\Models\Repuesta;
 use App\Models\Pregunta;
-
 use App\Models\Tema;
 use App\Models\Encuesta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 /**
  * Class CuestionarioController
@@ -33,7 +34,10 @@ class CuestionarioController extends Controller
 
     $respuestas = Repuesta::all();
 
-    return view('cuestionarios', compact('cuestionarios', 'respuestas'));
+    //dd("  select count(*) con from preguntas where encuesta_id = {$id}  ");
+
+    $con = DB::selectone(" select count(*) con from preguntas where encuesta_id = {$id} ");
+    return view('cuestionarios', compact('cuestionarios', 'respuestas','id','con'));
 }
 
     
@@ -130,6 +134,21 @@ class CuestionarioController extends Controller
 
         return redirect()->route('cuestionarios.index')
             ->with('success', 'Cuestionario deleted successfully');
+    }
+    public function guardarCuestionarios(Request $request)
+    {
+        //dd($request->all());
+
+        foreach ($request->idPregunta as $id_pregunta) {
+            $var="respuesta_".$id_pregunta;
+            $res = $request->$var;
+
+            DB::insert("insert into formulario values(null, {$request->id}, {$id_pregunta}, {$res},now(),now() )");
+        }
+        $cuestionarios = Cuestionario::paginate();
+
+        return view('cuestionario.index', compact('cuestionarios'))
+            ->with('i', (request()->input('page', 1) - 1) * $cuestionarios->perPage());
     }
 }
 

@@ -57,3 +57,5 @@ Route::get('/cuestionarioss', [CuestionarioController::class, 'mostrarCuestionar
 
 Route::get('/cuestionario/{id}',[CuestionarioController::class,'mostrarCuestionarios']);
 
+Route::post('/cuestionario/guardar',[CuestionarioController::class,'guardarCuestionarios']);
+
