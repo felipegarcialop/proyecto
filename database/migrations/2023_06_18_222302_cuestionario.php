@@ -20,8 +20,7 @@ class Cuestionario extends Migration
             $table->foreign('pregunta_id')->references('id')->on('preguntas')->onDelete('cascade');
             $table->unsignedBigInteger('repuesta_id');
             $table->foreign('repuesta_id')->references('id')->on('repuestas')->onDelete('cascade');
-            $table->unsignedBigInteger('ponderaciones_id');
-            $table->foreign('ponderaciones_id')->references('id')->on('ponderaciones')->onDelete('cascade');
+            
             $table->timestamps();
             
         });

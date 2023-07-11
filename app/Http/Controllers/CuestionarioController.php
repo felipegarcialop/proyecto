@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cuestionario;
 use App\Models\Repuesta;
 use App\Models\Pregunta;
-use App\Models\Ponderacione;
+
 use App\Models\Tema;
 use App\Models\Encuesta;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class CuestionarioController extends Controller
 {
     $encuestaId = $id;
 
-    $cuestionarios = Cuestionario::with(['pregunta', 'repuesta', 'ponderacione'])
+    $cuestionarios = Cuestionario::with(['pregunta', 'repuesta'])
         ->whereHas('pregunta.encuesta', function ($query) use ($encuestaId) {
             $query->where('id', $encuestaId);
         })
@@ -56,8 +56,8 @@ class CuestionarioController extends Controller
         $cuestionario = new Cuestionario();
         $pregunta= Pregunta::pluck('pregunta','id');
         $respuestas =Repuesta::pluck('Respuestas','id');
-        $ponderaciones= Ponderacione::select("id","ponderacion")->get()->pluck("ponderacion","id");
-        return view('cuestionario.create', compact('cuestionario','pregunta','respuestas','ponderaciones'));
+        
+        return view('cuestionario.create', compact('cuestionario','pregunta','respuestas'));
     }
 
     /**

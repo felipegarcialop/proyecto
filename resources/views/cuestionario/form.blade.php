@@ -11,11 +11,6 @@
             {{ Form::select('repuesta_id', $respuestas,$cuestionario->repuesta_id, ['class' => 'form-control' . ($errors->has('repuesta_id') ? ' is-invalid' : ''), 'placeholder' => 'Repuesta...']) }}
             {!! $errors->first('repuesta_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        <div class="form-group">
-            {{ Form::label('Ponderacion') }}
-            {{ Form::select('ponderaciones_id',$ponderaciones,$cuestionario->ponderaciones_id, ['class' => 'form-control' . ($errors->has('ponderaciones_id') ? ' is-invalid' : ''), 'placeholder' => 'Ponderaciones...']) }}
-            {!! $errors->first('ponderaciones_id', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
 
     </div>
     <div class="box-footer mt-2 d-md-flex justify-content-md-end">

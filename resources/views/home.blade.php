@@ -13,6 +13,7 @@
                                     En este sitio encontrarás información detallada sobre las distintas formas en que internet puede ser mal utilizado y cómo protegerse de ellas.
                                 </font>
                             </p>
+                            
                         </div>
                         
                             <img src="/imagen/int.jpg"class="card-img-bottom" style="wheight: 400px; height: 400px">

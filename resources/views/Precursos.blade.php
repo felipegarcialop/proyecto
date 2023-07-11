@@ -55,7 +55,7 @@
         @endforeach
         @role("Administrador")
         <button class="btn">
-            <a href="{{ route('temas.create') }}" class="btn btn-secondary btn-sm float-right"  data-placement="left">
+            <a href="{{ route('recusos.create') }}" class="btn btn-secondary btn-sm float-right"  data-placement="left">
                 <i class="fa fa-regular fa-plus"></i>
             </a>
         </button>

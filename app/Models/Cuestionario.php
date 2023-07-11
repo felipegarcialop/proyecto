@@ -26,7 +26,7 @@ class Cuestionario extends Model
     static $rules = [
 		'pregunta_id' => 'required',
 		'repuesta_id' => 'required',
-		'ponderaciones_id' => 'required',
+		
     ];
 
     protected $perPage = 20;
@@ -36,16 +36,13 @@ class Cuestionario extends Model
      *
      * @var array
      */
-    protected $fillable = ['pregunta_id','repuesta_id','ponderaciones_id'];
+    protected $fillable = ['pregunta_id','repuesta_id'];
 
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function ponderacione()
-    {
-        return $this->hasOne('App\Models\Ponderacione', 'id', 'ponderaciones_id');
-    }
+    
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -63,12 +60,7 @@ class Cuestionario extends Model
         return $this->hasOne('App\Models\Repuesta', 'id', 'repuesta_id');
     }
     
-    public function getPonderacion()
-    {
-        
-            return $this->hasOne(ponderacione::class, 'id', 'ponderaciones_id');
-       
-    }
+   
 
 
 }

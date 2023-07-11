@@ -28,10 +28,7 @@
                             <strong>Repuesta Id:</strong>
                             {{ $cuestionario->repuesta_id }}
                         </div>
-                        <div class="form-group">
-                            <strong>Ponderaciones Id:</strong>
-                            {{ $cuestionario->ponderaciones_id }}
-                        </div>
+                        
 
                     </div>
                 </div>

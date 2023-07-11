@@ -38,7 +38,7 @@
                                         
 										<th>Preguntas</th>
 										<th>Repuestas</th>
-										<th>Ponderaciones</th>
+										
 
                                         <th></th>
                                     </tr>
@@ -50,7 +50,7 @@
                                             
 											<td>{{ $cuestionario->pregunta->pregunta }}</td>
 											<td>{{ $cuestionario->repuesta->Respuestas}}</td>
-											<td>{{ $cuestionario->getPonderacion->ponderacion ??'sin ponderacion'}}</td>
+											
 
                                             <td>
                                                 <form action="{{ route('cuestionarios.destroy',$cuestionario->id) }}" method="POST">                                                    

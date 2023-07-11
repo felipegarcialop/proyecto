@@ -4,9 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <title>Cuestionarios</title>
 </head>
 <body>
+    
     <h1>Cuestionarios</h1>
 
     <table>
@@ -18,6 +20,7 @@
             </tr>
         </thead>
         <tbody>
+            
             @foreach ($cuestionarios as $cuestionario)
                 <tr>
                     <td>{{ $cuestionario->pregunta->pregunta }}</td>

@@ -94,41 +94,79 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+
+                    
                     @role("Administrador")
-                    <ul class="navbar-nav me-auto">
-                                <li class="nav-item">
-                                    <a class="nav-linkn" href="{{ route('grupos.index') }}" style ="color: white;">Grupo</a>
+                    <ul class="navbar-nav me-auto">  
+                                <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style ="color: white" 
+                                href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                
+                                    {{ __('Datos Escolares')}} 
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('grupos.index') }}">
+                                        {{ __('Grupos') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('grados.index') }}">
+                                        {{ __('Grados') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('instituciones.index') }}">
+                                        {{ __('Escuelas') }}
+                                    </a>
+                                    </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-linkn" href="{{ route('grados.index') }}" style ="color: white">Semestre</a>
+
+
+                                <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style ="color: white" 
+                                href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                
+                                    {{ __('Recursos')}} 
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('temas.index') }}">
+                                        {{ __('Temas') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('apoyos.index') }}">
+                                        {{ __('Instituciones de Apoyo') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('recusos.index') }}">
+                                        {{ __('Material de Apoyo') }}
+                                    </a>
+                                    </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-linkn" href="{{ route('instituciones.index') }}" style ="color: white">Instituciones Educativas</a>
+
+
+
+                                <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style ="color: white" 
+                                href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                
+                                    {{ __('Encuesta')}} 
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('encuestas.index') }}">
+                                        {{ __('Encuesta') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('preguntas.index') }}">
+                                        {{ __('Preguntas') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('repuestas.index') }}">
+                                        {{ __('Respuestas') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('cuestionarios.index') }}">
+                                        {{ __('Cuestionarios') }}
+                                    </a>
+                                    </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-linkn" href="{{ route('temas.index') }}" style ="color: white">Tema</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-linkn" href="{{ route('encuestas.index') }}" style ="color: white">Encuestas</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-linkn" href="{{ route('preguntas.index') }}" style ="color: white">Preguntas</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-linkn" href="{{ route('repuestas.index') }}" style ="color: white">Respuestas</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-linkn" href="{{ route('ponderaciones.index') }}" style ="color: white">Valores</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-linkn" href="{{ route('cuestionarios.index') }}" style ="color: white">Cuestionarios</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-linkn" href="{{ route('apoyos.index') }}" style ="color: white">Instituciones de apoyo</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-linkn" href="{{ route('recusos.index') }}" style ="color: white">Material de apoyo</a>
-                                </li>   
                     </ul>
                     @endrole
 
