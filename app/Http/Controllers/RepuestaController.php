@@ -48,7 +48,7 @@ class RepuestaController extends Controller
         $repuesta = Repuesta::create($request->all());
 
         return redirect()->route('repuestas.index')
-            ->with('success', 'Repuesta created successfully.');
+            ->with('success', 'Repuesta creada correctamente.');
     }
 
     /**
@@ -91,7 +91,7 @@ class RepuestaController extends Controller
         $repuesta->update($request->all());
 
         return redirect()->route('repuestas.index')
-            ->with('success', 'Repuesta updated successfully');
+            ->with('success', 'Repuesta editada correctamente');
     }
 
     /**
@@ -104,6 +104,6 @@ class RepuestaController extends Controller
         $repuesta = Repuesta::find($id)->delete();
 
         return redirect()->route('repuestas.index')
-            ->with('success', 'Repuesta deleted successfully');
+            ->with('success', 'Repuesta borrada correctamente');
     }
 }

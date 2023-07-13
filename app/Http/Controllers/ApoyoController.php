@@ -91,7 +91,7 @@ class ApoyoController extends Controller
         $apoyo->update($request->all());
 
         return redirect()->route('apoyos.index')
-            ->with('success', 'Apoyo updated successfully');
+            ->with('success', 'Apoyo editado correctamente');
     }
 
     /**

@@ -86,7 +86,7 @@
         <nav class="navbar navbar-expand-md navbar-light" style="background-color: #0d374f;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{('L') }}
+                    {{('Logo') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -94,81 +94,6 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-
-                    
-                    @role("Administrador")
-                    <ul class="navbar-nav me-auto">  
-                                <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style ="color: white" 
-                                href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                
-                                    {{ __('Datos Escolares')}} 
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('grupos.index') }}">
-                                        {{ __('Grupos') }}
-                                    </a>
-
-                                    <a class="dropdown-item" href="{{ route('grados.index') }}">
-                                        {{ __('Grados') }}
-                                    </a>
-
-                                    <a class="dropdown-item" href="{{ route('instituciones.index') }}">
-                                        {{ __('Escuelas') }}
-                                    </a>
-                                    </div>
-                                </li>
-
-
-                                <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style ="color: white" 
-                                href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                
-                                    {{ __('Recursos')}} 
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('temas.index') }}">
-                                        {{ __('Temas') }}
-                                    </a>
-
-                                    <a class="dropdown-item" href="{{ route('apoyos.index') }}">
-                                        {{ __('Instituciones de Apoyo') }}
-                                    </a>
-
-                                    <a class="dropdown-item" href="{{ route('recusos.index') }}">
-                                        {{ __('Material de Apoyo') }}
-                                    </a>
-                                    </div>
-                                </li>
-
-
-
-                                <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style ="color: white" 
-                                href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                
-                                    {{ __('Encuesta')}} 
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('encuestas.index') }}">
-                                        {{ __('Encuesta') }}
-                                    </a>
-
-                                    <a class="dropdown-item" href="{{ route('preguntas.index') }}">
-                                        {{ __('Preguntas') }}
-                                    </a>
-
-                                    <a class="dropdown-item" href="{{ route('repuestas.index') }}">
-                                        {{ __('Respuestas') }}
-                                    </a>
-
-                                    <a class="dropdown-item" href="{{ route('cuestionarios.index') }}">
-                                        {{ __('Cuestionarios') }}
-                                    </a>
-                                    </div>
-                                </li>
-                    </ul>
-                    @endrole
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -216,7 +141,78 @@
                 <div class="sidebar" style="background-color: #144b69; width: 250px;">
                     <!-- Contenido del sidebar -->
                     <ul class="nav flex-column">
-                    <li class="nav-item">
+                    @role("Administrador")
+                                <li class="nav-item nav-links">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style ="color: white" href="#"
+                                href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                
+                                    {{ __('Datos Escolares')}} 
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('grupos.index') }}">
+                                        {{ __('Grupos') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('grados.index') }}">
+                                        {{ __('Grados') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('instituciones.index') }}">
+                                        {{ __('Escuelas') }}
+                                    </a>
+                                    </div>
+                                </li>
+
+
+                                <li class="nav-item dropdown nav-links">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style ="color: white" 
+                                href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                
+                                    {{ __('Recursos')}} 
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('temas.index') }}">
+                                        {{ __('Temas') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('apoyos.index') }}">
+                                        {{ __('Instituciones de Apoyo') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('recusos.index') }}">
+                                        {{ __('Material de Apoyo') }}
+                                    </a>
+                                    </div>
+                                </li>
+
+
+
+                                <li class="nav-item dropdown nav-links">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style ="color: white" 
+                                href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                
+                                    {{ __('Encuesta')}} 
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('encuestas.index') }}">
+                                        {{ __('Encuesta') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('preguntas.index') }}">
+                                        {{ __('Preguntas') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('repuestas.index') }}">
+                                        {{ __('Respuestas') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('cuestionarios.index') }}">
+                                        {{ __('Cuestionarios') }}
+                                    </a>
+                                    </div>
+                                </li>
+                            @endrole
+                        <li class="nav-item">
                          <a class="nav-links" href="{{ route('PTemas') }}" style="color: white"><i class="fa fa-regular fa-calendar"></i> Temas</a>
                         <li class="nav-item">
                             <a class="nav-links" href="{{ route('Papoyos') }}" style="color: white"><i class="fa fa-solid fa-landmark"></i> Instituciones de apoyo</a>
@@ -224,7 +220,7 @@
                         <li class="nav-item">
                             <a class="nav-links" href="{{ route('Precursos') }}" style="color: white"><i class="fa fa-regular fa-folder"></i> Material de apoyo</a>
                         </li>
-
+                        
                         <li class="nav-item">
                             <a class="nav-links" href="#" style="color: white"><i class="fa fa-solid fa-table"></i> Resultados</a>
                         </li>

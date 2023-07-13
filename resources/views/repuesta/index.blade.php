@@ -38,6 +38,8 @@
                                         
 										<th>Respuestas</th>
 
+                                        <th>Valor</th>
+                                        
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -47,6 +49,8 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $repuesta->Respuestas }}</td>
+
+                                            <td>{{ $repuesta->Valor }}</td>
 
                                             <td>
                                                 <form action="{{ route('repuestas.destroy',$repuesta->id) }}" method="POST">
