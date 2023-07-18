@@ -7,6 +7,10 @@ use App\Models\Repuesta;
 use App\Models\Pregunta;
 use App\Models\Tema;
 use App\Models\Encuesta;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -137,18 +141,25 @@ class CuestionarioController extends Controller
     }
     public function guardarCuestionarios(Request $request)
     {
-        //dd($request->all());
+        
 
+        //dd($request->all());
+        //dd($request);
         foreach ($request->idPregunta as $id_pregunta) {
             $var="respuesta_".$id_pregunta;
             $res = $request->$var;
-
-            DB::insert("insert into formulario values(null, {$request->id}, {$id_pregunta}, {$res},now(),now() )");
+           $user=  Auth::id(); 
+            DB::insert("insert into formulario values(null, {$request->id}, {$id_pregunta}, {$res} ,{$user},now(),now())"); 
         }
+    
+        //$formId = DB::getPdo()->lastInsertId();
+        //dd($formId);
+
         $cuestionarios = Cuestionario::paginate();
 
-        return view('cuestionario.index', compact('cuestionarios'))
+        return view('home', compact('cuestionarios'))
             ->with('i', (request()->input('page', 1) - 1) * $cuestionarios->perPage());
     }
+   
 }
 

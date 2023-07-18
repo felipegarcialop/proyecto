@@ -141,7 +141,7 @@
                 <div class="sidebar" style="background-color: #144b69; width: 250px;">
                     <!-- Contenido del sidebar -->
                     <ul class="nav flex-column">
-                    @role("Administrador")
+                    @role("Administrado")
                                 <li class="nav-item nav-links">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" style ="color: white" href="#"
                                 href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -204,6 +204,10 @@
 
                                     <a class="dropdown-item" href="{{ route('repuestas.index') }}">
                                         {{ __('Respuestas') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('ponderaciones.index') }}">
+                                        {{ __('Ponderacion') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('cuestionarios.index') }}">

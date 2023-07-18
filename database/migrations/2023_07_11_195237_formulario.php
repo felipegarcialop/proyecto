@@ -20,8 +20,10 @@ class Formulario extends Migration
             $table->foreign('encuestas_id')->references('id')->on('encuestas')->onDelete('cascade');
             $table->unsignedBigInteger('preguntas_id');
             $table->foreign('preguntas_id')->references('id')->on('preguntas')->onDelete('cascade');
-            $table->unsignedBigInteger('ponderacion_id');
-            $table->foreign('ponderacion_id')->references('id')->on('ponderaciones')->onDelete('cascade');
+            $table->unsignedBigInteger('respuesta_id');
+            $table->foreign('respuesta_id')->references('id')->on('repuestas')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
