@@ -9,6 +9,9 @@ use App\Http\Controllers\PrecursosController;
 use App\Http\Controllers\IrecursosController;
 use App\Http\Controllers\CuestionarioController;
 
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+
 
 
 /*
@@ -59,3 +62,6 @@ Route::get('/cuestionario/{id}',[CuestionarioController::class,'mostrarCuestiona
 
 Route::post('/cuestionario/guardar',[CuestionarioController::class,'guardarCuestionarios']);
 
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);});

@@ -16,11 +16,7 @@ class CreateRoles extends Migration
      */
     public function up()
     {
-        $role1 = Role::create(['name'=>'Administrado']);
-        $role2 = Role::create(['name'=>'Docente']);
-        $role3 = Role::create(['name'=>'Alumno']);
-        $user = User::find(1);
-        $user->assignRole($role1);
+       
     }
 
     /**

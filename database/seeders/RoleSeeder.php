@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-class RolSeeder extends Seeder
+
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,8 +16,13 @@ class RolSeeder extends Seeder
     public function run()
     {
         //
-        
 
-        
+        $role1= Role::create(['name'=>'Admin']);
+        $role2= Role::create(['name'=>'Docente']);
+
+        Permission::create(['name'=>' /cuestionario/{{$dato->id}}']);
+       
+
+
     }
 }
