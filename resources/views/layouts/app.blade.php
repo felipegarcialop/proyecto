@@ -151,19 +151,19 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" style="color: white" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link"  style="color: white" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
-                            <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
-                            <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
+                            <li><a class="nav-link" style="color: white"  href="{{ route('users.index') }}">Manage Users</a></li>
+                            <li><a class="nav-link" style="color: white" href="{{ route('roles.index') }}">Manage Role</a></li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -190,11 +190,12 @@
                 <div class="sidebar" style="background-color: #144b69; width: 250px;">
                     <!-- Contenido del sidebar -->
                      <ul class="nav flex-column">
-                    @role("Admin") 
+                    
                         <!-- Agrega más elementos del sidebar si es necesario -->
 
                         <!--Menu Items -->
                         <div class="menu">
+                        @role("Admin") 
                             <div class="item"><a class="sub-btn" style="color: white"><i class="fas fa-desktop"></i>DATOS ESCOLARES
                             <!-- dropdown-->
                             <!-- dropdown arrow-->
@@ -230,7 +231,7 @@
                                 <a href="{{ route('cuestionarios.index') }}" class="sub-item">Cuestionarios</a>
                             </div>
                             </div>
-
+                          @endrole 
                             <div class="item"><a  href="{{ route('PTemas') }}"  style="color: white"><i class="fa fa-regular fa-calendar"></i>TEMAS</a> </div>
                             <div class="item"><a href="{{ route('Papoyos') }}"  style="color: white"><i class="fa fa-solid fa-landmark"></i>INSTITUCIONES DE APOYO</a> </div>
                             <div class="item"><a href="{{ route('Precursos') }}"  style="color: white"><i class="fa fa-regular fa-folder"></i>MATERIAL DE APOYO</a> </div>
@@ -240,7 +241,7 @@
 
                         </div>
 
-                        @endrole
+                        
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
                         <script>
                             $(document).ready(function(){
