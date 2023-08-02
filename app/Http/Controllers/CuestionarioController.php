@@ -64,7 +64,7 @@ class CuestionarioController extends Controller
         $cuestionario = new Cuestionario();
         $pregunta= Pregunta::pluck('pregunta','id');
         $respuestas =Repuesta::pluck('Respuestas','id');
-        
+       
         return view('cuestionario.create', compact('cuestionario','pregunta','respuestas'));
     }
 

@@ -53,7 +53,7 @@
             class="btn btn-lg {{ $colorClass }} me-md-4  rounded-pill">{{ $dato->Nombre }}</a>
             </button>
         @endforeach
-        @role("Administrado")
+        @role("Admin")
         
         <button class="btn">
             <a href="{{ route('temas.create') }}" class="btn btn-secondary btn-sm float-right"  data-placement="left">
