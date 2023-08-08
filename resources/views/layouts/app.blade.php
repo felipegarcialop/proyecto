@@ -235,7 +235,7 @@
                             <div class="item"><a  href="{{ route('PTemas') }}"  style="color: white"><i class="fa fa-regular fa-calendar"></i>TEMAS</a> </div>
                             <div class="item"><a href="{{ route('Papoyos') }}"  style="color: white"><i class="fa fa-solid fa-landmark"></i>INSTITUCIONES DE APOYO</a> </div>
                             <div class="item"><a href="{{ route('Precursos') }}"  style="color: white"><i class="fa fa-regular fa-folder"></i>MATERIAL DE APOYO</a> </div>
-                            <div class="item"><a href=""  style="color: white"><i class="fa fa-solid fa-table"></i>RESULTADOS</a> </div>
+                            <div class="item"><a href="#"  style="color: white"><i class="fa fa-solid fa-table"></i>RESULTADOS</a> </div>
 
 
 
