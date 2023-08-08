@@ -9,7 +9,7 @@ use App\Models\Tema;
 use App\Models\Encuesta;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-;
+use Illuminate\Support\Collection;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
