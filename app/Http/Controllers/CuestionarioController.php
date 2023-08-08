@@ -27,22 +27,29 @@ class CuestionarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function mostrarCuestionarios($id)
-{
-    $encuestaId = $id;
+    {
+        $encuestaId = $id;
 
-    $cuestionarios = Cuestionario::with(['pregunta', 'repuesta'])
-        ->whereHas('pregunta.encuesta', function ($query) use ($encuestaId) {
-            $query->where('id', $encuestaId);
-        })
-        ->get();
+        // Utilizamos groupBy para agrupar por la pregunta_id
+        $cuestionariosGrouped = Cuestionario::with(['pregunta', 'repuesta'])
+            ->whereHas('pregunta.encuesta', function ($query) use ($encuestaId) {
+                $query->where('id', $encuestaId);
+            })
+            ->get()
+            ->groupBy('pregunta_id'); // Agrupar por pregunta_id
 
-    $respuestas = Repuesta::all();
+        // Ahora tenemos una colección de preguntas con sus respuestas agrupadas
+        // Para evitar repeticiones de preguntas, tomamos solo el primer elemento de cada grupo
+        $cuestionarios = new Collection();
+        foreach ($cuestionariosGrouped as $group) {
+            $cuestionarios->push($group->first());
+        }
 
-    //dd("  select count(*) con from preguntas where encuesta_id = {$id}  ");
+        $respuestas = Repuesta::all();
+        $con = DB::selectone ("select count(*) con from preguntas where encuesta_id = {$id}");
 
-    $con = DB::selectone(" select count(*) con from preguntas where encuesta_id = {$id} ");
-    return view('cuestionarios', compact('cuestionarios', 'respuestas','id','con'));
-}
+        return view('cuestionarios', compact('cuestionarios', 'respuestas', 'id', 'con'));
+    }
 
     
 
@@ -77,11 +84,25 @@ class CuestionarioController extends Controller
     public function store(Request $request)
     {
         request()->validate(Cuestionario::$rules);
-
-        $cuestionario = Cuestionario::create($request->all());
-
-        return redirect()->route('cuestionarios.index')
-            ->with('success', 'Cuestionario created successfully.');
+    
+        $pregunta_id = $request->input('pregunta_id');
+        $respuestas = $request->input('repuesta_id');
+    
+        try {
+            foreach ($respuestas as $respuesta) {
+                // Crear un nuevo registro para cada respuesta seleccionada
+                Cuestionario::create([
+                    'pregunta_id' => $pregunta_id,
+                    'repuesta_id' => $respuesta,
+                ]);
+            }
+    
+            return redirect()->route('cuestionarios.index')
+                ->with('success', 'La pregunta y sus respuestas se agregaron correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Error while saving cuestionario: ' . $e->getMessage());
+        }
     }
 
     /**
