@@ -25,7 +25,7 @@
 
         <div class="form-group">
             {{ Form::label('Respuesta') }}
-            {{ Form::select('repuesta_id[]', $respuestas,$cuestionario->repuesta_id, ['class' => 'select2-multiple form-control' . ($errors->has('repuesta_id') ? ' is-invalid' : ''),'multiple' => 'multiple','placeholder' => 'Repuesta...']) }}
+            {{ Form::select('repuesta_id[]', $respuestas,$cuestionario->repuesta_id, ['class' => 'select2-multiple form-control' . ($errors->has('repuesta_id') ? ' is-invalid' : ''),'multiple' => 'multiple','placeholder' => 'Repuesta']) }}
             {!! $errors->first('repuesta_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
