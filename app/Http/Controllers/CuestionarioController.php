@@ -8,6 +8,7 @@ use App\Models\Pregunta;
 use App\Models\Tema;
 use App\Models\Encuesta;
 use App\Models\User;
+use App\Models\Formulario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection;
 
@@ -40,15 +41,36 @@ class CuestionarioController extends Controller
 
         // Ahora tenemos una colección de preguntas con sus respuestas agrupadas
         // Para evitar repeticiones de preguntas, tomamos solo el primer elemento de cada grupo
-        $cuestionarios = new Collection();
-        foreach ($cuestionariosGrouped as $group) {
-            $cuestionarios->push($group->first());
-        }
+        // Asignamos el ID de la pregunta como clave del array
+    $cuestionarios = collect();
+    foreach ($cuestionariosGrouped as $preguntaId => $group) {
+        $cuestionarios->put($preguntaId, $group->first());
+    }
 
-        $respuestas = Repuesta::all();
+        
+        //$respuestas = Repuesta::all();
+
+        
+        $respuestasPorPregunta = [];
+foreach ($cuestionarios as $preguntaId => $cuestionario) {
+    $respuestas = DB::table('encuestas')
+        ->join('preguntas', 'preguntas.encuesta_id', '=', 'encuestas.id')
+        ->join('cuestionarios', 'cuestionarios.pregunta_id', '=', 'preguntas.id')
+        ->join('repuestas', 'cuestionarios.repuesta_id', '=', 'repuestas.id')
+        ->where('cuestionarios.pregunta_id', $preguntaId)
+        ->where('encuestas.id', $encuestaId)
+        ->select('repuestas.id', 'repuestas.Respuestas') // Agregamos el campo 'id' de respuestas
+        ->get();
+        
+    $respuestasPorPregunta[$preguntaId] = $respuestas;
+}
+    
+
+
         $con = DB::selectone ("select count(*) con from preguntas where encuesta_id = {$id}");
 
-        return view('cuestionarios', compact('cuestionarios', 'respuestas', 'id', 'con'));
+        //dd($respuestas);
+        return view('cuestionarios', compact('cuestionarios', 'respuestasPorPregunta', 'id', 'con'));
     }
 
     
@@ -162,25 +184,29 @@ class CuestionarioController extends Controller
     }
     public function guardarCuestionarios(Request $request)
     {
+        $encuestaId = $request->input('id');
+        $userId = auth()->user()->id; // ID del usuario autenticado
         
+        foreach ($request->all() as $name => $value) {
+            if (strpos($name, 'respuesta_') === 0) {
+                $preguntaId = substr($name, strlen('respuesta_'));
+                $respuestaId = $value;
 
-        //dd($request->all());
-        //dd($request);
-        foreach ($request->idPregunta as $id_pregunta) {
-            $var="respuesta_".$id_pregunta;
-            $res = $request->$var;
-           $user=  Auth::id(); 
-            DB::insert("insert into formulario values(null, {$request->id}, {$id_pregunta}, {$res} ,{$user},now(),now())"); 
+                // Insertar los datos directamente en la tabla "formulario"
+                DB::table('formulario')->insert([
+                    'encuestas_id' => $encuestaId,
+                    'preguntas_id' => $preguntaId,
+                    'respuesta_id' => $respuestaId,
+                    'user_id' => $userId,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            }
         }
-    
-        //$formId = DB::getPdo()->lastInsertId();
-        //dd($formId);
-
-        $cuestionarios = Cuestionario::paginate();
-
-        return view('home', compact('cuestionarios'))
-            ->with('i', (request()->input('page', 1) - 1) * $cuestionarios->perPage());
+        
+        return view('home');
     }
+    
    
 }
 
