@@ -9,6 +9,10 @@ use App\Http\Controllers\PrecursosController;
 use App\Http\Controllers\IrecursosController;
 use App\Http\Controllers\CuestionarioController;
 
+
+use App\Http\Controllers\ChartController;
+
+
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 
@@ -65,3 +69,8 @@ Route::post('/cuestionario/guardar',[CuestionarioController::class,'guardarCuest
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);});
+
+
+Route::get('/grafico', [ChartController::class, 'showChart'])->name('chart.show');
+
+
