@@ -16,20 +16,34 @@
         .center-title {
             text-align: center;
         }
+        .card-details {
+            margin-top: 10px;
+        }
+        .total-score {
+            font-weight: bold;
+        }
+        .adjusted-average {
+            font-weight: bold;
+            color: green; /* Cambiar el color según tus preferencias */
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        @foreach($dataByEncuesta as $encuestaTitulo => $data)
+        @foreach($dataByEncuesta as $encuestaTitulo => $encuestaData)
             <div class="card mb-4">
                 <div class="card-header center-title">
                     <h2 class="card-title">{{ $encuestaTitulo }}</h2>
+                </div>
+                <div class="card-details">
+                    <p class="total-score">Puntuacion: {{ $encuestaData['totalScore'] }}</p>
+                    <p class="adjusted-average">Propenso: {{ number_format($encuestaData['adjustedAverage'], 2) }}%</p>
                 </div>
                 <div class="card-body">
                     <canvas id="myChart{{ str_replace(' ', '_', $encuestaTitulo) }}" width="400" height="400"></canvas>
                     <script>
                         var ctx = document.getElementById('myChart{{ str_replace(' ', '_', $encuestaTitulo) }}').getContext('2d');
-                        var data{{ str_replace(' ', '_', $encuestaTitulo) }} = @json($data);
+                        var data{{ str_replace(' ', '_', $encuestaTitulo) }} = @json($encuestaData['data']);
 
                         var labels{{ str_replace(' ', '_', $encuestaTitulo) }} = data{{ str_replace(' ', '_', $encuestaTitulo) }}.map(item => item.Pregunta);
                         var values{{ str_replace(' ', '_', $encuestaTitulo) }} = data{{ str_replace(' ', '_', $encuestaTitulo) }}.map(item => item.Valor);
@@ -63,6 +77,7 @@
     </div>
 </body>
 </html>
+
 
 
 @endsection

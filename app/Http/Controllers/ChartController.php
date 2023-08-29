@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class ChartController extends Controller
 {
     // 
-
-public function showChart()
+    public function showChart()
 {
     $userId = Auth::id(); // Obtener el ID del usuario autenticado
 
@@ -28,10 +27,22 @@ public function showChart()
             ->where('formulario.user_id', $userId) // Filtrar por el ID del usuario autenticado
             ->get();
 
-        $dataByEncuesta[$encuesta->Titulo] = $data;
+        $totalScore = $data->sum('Valor'); // Calcular la puntuación total
+        $totalQuestions = $data->count(); // Contar el número de preguntas
+
+        if ($totalQuestions !== 0) {
+            $adjustedAverage = ($totalScore / ($totalQuestions * 100)) * 100; // Calcular el promedio ajustado
+        } else {
+            $adjustedAverage = 0; // Establecer el promedio ajustado como cero si no hay preguntas
+        }
+
+        $dataByEncuesta[$encuesta->Titulo] = [
+            'data' => $data,
+            'totalScore' => $totalScore,
+            'adjustedAverage' => $adjustedAverage, // Pasar el promedio ajustado a la vista
+        ];
     }
 
     return view('chart', compact('dataByEncuesta'));
 }
-    
 }
