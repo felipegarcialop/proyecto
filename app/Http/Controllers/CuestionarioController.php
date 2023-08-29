@@ -167,7 +167,7 @@ foreach ($cuestionarios as $preguntaId => $cuestionario) {
         $cuestionario->update($request->all());
 
         return redirect()->route('cuestionarios.index')
-            ->with('success', 'Cuestionario updated successfully');
+            ->with('success', 'Cuestionario editado correctamente');
     }
 
     /**
@@ -180,7 +180,7 @@ foreach ($cuestionarios as $preguntaId => $cuestionario) {
         $cuestionario = Cuestionario::find($id)->delete();
 
         return redirect()->route('cuestionarios.index')
-            ->with('success', 'Cuestionario deleted successfully');
+            ->with('success', 'Cuestionario eliminado correctamente');
     }
     public function guardarCuestionarios(Request $request)
     {

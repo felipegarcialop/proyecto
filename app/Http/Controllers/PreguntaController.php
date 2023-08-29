@@ -50,7 +50,7 @@ class PreguntaController extends Controller
         $pregunta = Pregunta::create($request->all());
 
         return redirect()->route('preguntas.index')
-            ->with('success', 'Pregunta created successfully.');
+            ->with('success', 'Pregunta creada correctamente.');
     }
 
     /**
@@ -93,7 +93,7 @@ class PreguntaController extends Controller
         $pregunta->update($request->all());
 
         return redirect()->route('preguntas.index')
-            ->with('success', 'Pregunta updated successfully');
+            ->with('success', 'Pregunta editada correctamente');
     }
 
     /**
@@ -106,6 +106,6 @@ class PreguntaController extends Controller
         $pregunta = Pregunta::find($id)->delete();
 
         return redirect()->route('preguntas.index')
-            ->with('success', 'Pregunta deleted successfully');
+            ->with('success', 'Pregunta borrada correctamente');
     }
 }

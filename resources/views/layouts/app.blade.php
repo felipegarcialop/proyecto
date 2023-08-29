@@ -40,13 +40,13 @@
         }
         
         footer {
-            background-color: #f2d8b7f4e7df;
-            position: absolute;
+            background-color: #f2d8b7;
+            position: sticky;
             bottom: 0;
             width: 100%;
             height: 55px;
             color: white;
-            z-index: 2; /* Establecer el valor del z-index */
+            z-index: 1; /* Establecer el valor del z-index */
             display: flex; /* Utilizar flexbox */
             justify-content: flex-end; /* Alinear elementos al lado derecho */
         }
@@ -54,7 +54,7 @@
             background-color: #f8f9fa;
             border-right: 1px solid #dee2e6;
             min-height: calc(100vh - 55px);
-            z-index: 1; /* Establecer el valor del z-index */
+            z-index: 2; /* Establecer el valor del z-index */
         }
         
         .content {
@@ -146,7 +146,7 @@
                     <!-- Left Side Of Navbar -->
 
                     <!-- Right Side Of Navbar -->
-                    <<ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -160,8 +160,7 @@
                                 </li>
                             @endif
                         @else
-                            <li><a class="nav-link" style="color: white"  href="{{ route('users.index') }}">Manage Users</a></li>
-                            <li><a class="nav-link" style="color: white" href="{{ route('roles.index') }}">Manage Role</a></li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -187,7 +186,7 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="sidebar" style="background-color: #144b69; width: 250px;">
+                <div class="sidebar" style="background-color: #144b69; width: 270px;">
                     <!-- Contenido del sidebar -->
                      <ul class="nav flex-column">
                     
@@ -196,7 +195,10 @@
                         <!--Menu Items -->
                         <div class="menu">
                         @role("Admin") 
-                            <div class="item"><a class="sub-btn" style="color: white"><i class="fas fa-desktop"></i>DATOS ESCOLARES
+                            <div class="item"><a  href="{{ route('users.index') }}"  style="color: white"><i class="fa fa-regular fa-user"></i>Usuarios</a> </div>
+                            <div class="item"><a  href="{{ route('roles.index') }}"  style="color: white"><i class="fa fa-solid fa-users"></i>Roles</a> </div>
+
+                            <div class="item"><a class="sub-btn" style="color: white"><i class="fa fa-graduation-cap"></i>Datos escolares
                             <!-- dropdown-->
                             <!-- dropdown arrow-->
                             <i class="fas fa-angle-right dropdown"></i>
@@ -208,7 +210,7 @@
                             </div>
                             </div>
                             
-                            <div class="item"><a class="sub-btn"  style="color: white"><i class="fas fa-desktop"></i>RECURSOS
+                            <div class="item"><a class="sub-btn"  style="color: white"><i class="fa fa-folder"></i>Recursos
                             <!-- dropdown-->
                             <!-- dropdown arrow 2-->
                             <i class="fas fa-angle-right dropdown"></i>
@@ -219,7 +221,7 @@
                                 <a href="{{ route('recusos.index') }}" class="sub-item">Material de aopyo</a>
                             </div>
                             </div>
-                            <div class="item"><a class="sub-btn"  style="color: white"><i class="fas fa-desktop"></i>ENCUESTA
+                            <div class="item"><a class="sub-btn"  style="color: white"><i class="fa fa-question"></i>Encuestas
                             <!-- dropdown-->
                             <!-- dropdown arrow 3-->
                             <i class="fas fa-angle-right dropdown"></i>
@@ -232,11 +234,10 @@
                             </div>
                             </div>
                           @endrole 
-                            <div class="item"><a  href="{{ route('PTemas') }}"  style="color: white"><i class="fa fa-regular fa-calendar"></i>TEMAS</a> </div>
-                            <div class="item"><a href="{{ route('Papoyos') }}"  style="color: white"><i class="fa fa-solid fa-landmark"></i>INSTITUCIONES DE APOYO</a> </div>
-                            <div class="item"><a href="{{ route('Precursos') }}"  style="color: white"><i class="fa fa-regular fa-folder"></i>MATERIAL DE APOYO</a> </div>
-                            <div class="item"><a href="{{ route('chart.show') }}"  style="color: white"><i class="fa fa-solid fa-table"></i>RESULTADOS</a> </div>
-
+                            <div class="item"><a  href="{{ route('PTemas') }}"  style="color: white"><i class="fa fa-regular fa-calendar"></i>Temas</a> </div>
+                            <div class="item"><a href="{{ route('Papoyos') }}"  style="color: white"><i class="fa fa-solid fa-landmark"></i>Instituciones de apoyo</a> </div>
+                            <div class="item"><a href="{{ route('Precursos') }}"  style="color: white"><i class="fa fa-regular fa-folder"></i>Material de apoyo</a> </div>
+                            <div class="item"><a href="{{ route('chart.show') }}"  style="color: white"><i class="fa fa-solid fa-table"></i>Resultados</a> </div>
 
 
                         </div>
@@ -271,7 +272,7 @@
         </div>
     </div>
     <footer>
-        <img src="/imagen/flecha.png" style="width: 40px; height: 40px" >
+        <img src="" style="width: 40px; height: 40px" >
     </footer> 
 </body>
 </html>

@@ -48,7 +48,7 @@ class InstitucioneController extends Controller
         $institucione = Institucione::create($request->all());
 
         return redirect()->route('instituciones.index')
-            ->with('success', 'Institucione created successfully.');
+            ->with('success', 'Institucion educativa agregada correctamente.');
     }
 
     /**
@@ -91,7 +91,7 @@ class InstitucioneController extends Controller
         $institucione->update($request->all());
 
         return redirect()->route('instituciones.index')
-            ->with('success', 'Institucione updated successfully');
+            ->with('success', 'Institucion educativa editada correctamente');
     }
 
     /**
@@ -104,6 +104,6 @@ class InstitucioneController extends Controller
         $institucione = Institucione::find($id)->delete();
 
         return redirect()->route('instituciones.index')
-            ->with('success', 'Institucione deleted successfully');
+            ->with('success', 'Institucion educativa borrada corretamente');
     }
 }

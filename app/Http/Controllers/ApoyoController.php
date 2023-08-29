@@ -48,7 +48,7 @@ class ApoyoController extends Controller
         $apoyo = Apoyo::create($request->all());
 
         return redirect()->route('Papoyos')
-            ->with('success', 'Apoyo created successfully.');
+            ->with('success', 'El material de apoyo se ha creado correctamente.');
     }
 
     /**
@@ -91,7 +91,7 @@ class ApoyoController extends Controller
         $apoyo->update($request->all());
 
         return redirect()->route('apoyos.index')
-            ->with('success', 'Apoyo editado correctamente');
+            ->with('success', 'El material de apoyo editado correctamente');
     }
 
     /**
@@ -104,6 +104,6 @@ class ApoyoController extends Controller
         $apoyo = Apoyo::find($id)->delete();
 
         return redirect()->route('apoyos.index')
-            ->with('success', 'Apoyo deleted successfully');
+            ->with('success', 'El material de apoyo borrado correctamente');
     }
 }

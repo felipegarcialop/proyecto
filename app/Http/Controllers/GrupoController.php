@@ -48,7 +48,7 @@ class GrupoController extends Controller
         $grupo = Grupo::create($request->all());
 
         return redirect()->route('grupos.index')
-            ->with('success', 'Grupo created successfully.');
+            ->with('success', 'Grupo creado correctamente.');
     }
 
     /**

@@ -50,7 +50,7 @@ class EncuestaController extends Controller
         $encuesta = Encuesta::create($request->all());
 
         return redirect()->route('encuestas.index')
-            ->with('success', 'Encuesta created successfully.');
+            ->with('success', 'Encuesta creada correctamente.');
     }
 
     /**
@@ -94,7 +94,7 @@ class EncuestaController extends Controller
         $encuesta->update($request->all());
 
         return redirect()->route('encuestas.index')
-            ->with('success', 'Encuesta updated successfully');
+            ->with('success', 'Encuesta editado correctamente');
     }
 
     /**
@@ -107,6 +107,6 @@ class EncuestaController extends Controller
         $encuesta = Encuesta::find($id)->delete();
 
         return redirect()->route('encuestas.index')
-            ->with('success', 'Encuesta deleted successfully');
+            ->with('success', 'Encuesta borrada correctamente');
     }
 }
