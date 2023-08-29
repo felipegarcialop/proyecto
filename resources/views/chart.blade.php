@@ -36,8 +36,8 @@
                     <h2 class="card-title">{{ $encuestaTitulo }}</h2>
                 </div>
                 <div class="card-details">
-                    <p class="total-score">Puntuacion: {{ $encuestaData['totalScore'] }}</p>
-                    <p class="adjusted-average">Propenso: {{ number_format($encuestaData['adjustedAverage'], 2) }}%</p>
+                    <p class="total-score">Puntuación Total: {{ $encuestaData['totalScore'] }}</p>
+                    <p class="adjusted-average">Promedio Ajustado: {{ number_format($encuestaData['adjustedAverage'], 2) }}%</p>
                 </div>
                 <div class="card-body">
                     <canvas id="myChart{{ str_replace(' ', '_', $encuestaTitulo) }}" width="400" height="400"></canvas>
@@ -77,6 +77,7 @@
     </div>
 </body>
 </html>
+
 
 
 
