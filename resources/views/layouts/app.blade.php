@@ -136,7 +136,7 @@
         <nav class="navbar navbar-expand-md navbar-light" style="background-color: #0d374f;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{('Logo') }}
+                <img src="/imagen/logo1.png" class="card-img-bottom" style="height: 50px">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -217,8 +217,8 @@
                             </a> 
                             <div class="sub-menu">
                                 <a href="{{ route('temas.index') }}" class="sub-item">Temas</a>
-                                <a href="{{ route('apoyos.index') }}" class="sub-item">Instituciones de apoto</a>
-                                <a href="{{ route('recusos.index') }}" class="sub-item">Material de aopyo</a>
+                                <a href="{{ route('apoyos.index') }}" class="sub-item">Instituciones de apoyo</a>
+                                <a href="{{ route('recusos.index') }}" class="sub-item">Material de apoyo</a>
                             </div>
                             </div>
                             <div class="item"><a class="sub-btn"  style="color: white"><i class="fa fa-question"></i>Encuestas
@@ -272,7 +272,7 @@
         </div>
     </div>
     <footer>
-        <img src="" style="width: 40px; height: 40px" >
+        <!--<img src="" style="width: 40px; height: 40px" > -->
     </footer> 
 </body>
 </html>

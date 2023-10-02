@@ -2,11 +2,11 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Crear nuevo usuario</h2>
-        </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('users.index') }}"> Regresar</a>
+        </div>
+        <div class="pull-left">
+            <h2>Crear nuevo usuario</h2>
         </div>
     </div>
 </div>
@@ -44,6 +44,18 @@
         <div class="form-group">
             <strong>Confirmar contraseña:</strong>
             {!! Form::password('confirm-password', array('placeholder' => 'Confirmar contraseña','class' => 'form-control')) !!}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Grado:</strong>
+            {!! Form::select('grado_id', $grados->pluck('descripcionGrupo', 'id'), null, ['placeholder' => 'Seleccione un grado', 'class' => 'form-control']) !!}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Escuela:</strong>
+            {!! Form::select('institucion_id', $instituciones, null, ['placeholder' => 'Seleccione una escuela', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">

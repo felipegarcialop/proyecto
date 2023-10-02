@@ -9,6 +9,9 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use Illuminate\Support\Arr;
+use App\Models\Institucione;
+use App\Models\Grado;
+use App\Models\Grupo;
     
 class UserController extends Controller
 {
@@ -20,7 +23,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $data = User::orderBy('id','DESC')->paginate(5);
-        return view('users.index',compact('data'))
+        return view ('users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
     
@@ -32,7 +35,12 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
-        return view('users.create',compact('roles'));
+        $instituciones = Institucione::pluck('Nombre', 'id');
+        /**$grados = Grado::pluck('descripcion','id');*/
+        $grados = Grado::join('grupos', 'grados.grupo_id', '=', 'grupos.id')
+        ->select('grados.id', 'grados.descripcion', 'grupos.descripcion')
+        ->get();
+        return view('users.create',compact('roles','instituciones','grados'));
     }
     
     /**
@@ -47,7 +55,9 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
+            'grado_id' => 'required',
+            'institucion_id' => 'required'
         ]);
     
         $input = $request->all();
@@ -57,7 +67,7 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
     
         return redirect()->route('users.index')
-                        ->with('success','User created successfully');
+                        ->with('success','Usuario creado correctamente');
     }
     
     /**
@@ -100,7 +110,9 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
+            'grupo_id' => 'required',
+            'institucion_id' => 'required'
         ]);
     
         $input = $request->all();
@@ -117,7 +129,7 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
     
         return redirect()->route('users.index')
-                        ->with('success','User updated successfully');
+                        ->with('success','Usuario creado correctamente');
     }
     
     /**
@@ -130,6 +142,6 @@ class UserController extends Controller
     {
         User::find($id)->delete();
         return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
+                        ->with('success','Usuario borrado correctamente');
     }
 }

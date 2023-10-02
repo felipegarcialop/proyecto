@@ -36,8 +36,7 @@
             @endif
         </td>
         <td>
-            <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Ver</a>
-            <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-fw fa-edit"></i></a>
+            <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-fa fa-edit"></i></a>
                 {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
                     <button type="submit" class="btn btn-danger">
                         <i class="fas fa-trash"></i>
