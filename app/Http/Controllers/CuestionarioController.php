@@ -71,6 +71,8 @@ foreach ($cuestionarios as $preguntaId => $cuestionario) {
 
         //dd($respuestas);
         return view('cuestionarios', compact('cuestionarios', 'respuestasPorPregunta', 'id', 'con'));
+
+        
     }
 
     
@@ -183,29 +185,40 @@ foreach ($cuestionarios as $preguntaId => $cuestionario) {
             ->with('success', 'Cuestionario eliminado correctamente');
     }
     public function guardarCuestionarios(Request $request)
-    {
-        $encuestaId = $request->input('id');
-        $userId = auth()->user()->id; // ID del usuario autenticado
-        
-        foreach ($request->all() as $name => $value) {
-            if (strpos($name, 'respuesta_') === 0) {
-                $preguntaId = substr($name, strlen('respuesta_'));
-                $respuestaId = $value;
+{
+    $encuestaId = $request->input('id');
+    $userId = auth()->user()->id; // ID del usuario autenticado
 
-                // Insertar los datos directamente en la tabla "formulario"
-                DB::table('formulario')->insert([
-                    'encuestas_id' => $encuestaId,
-                    'preguntas_id' => $preguntaId,
-                    'respuesta_id' => $respuestaId,
-                    'user_id' => $userId,
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ]);
-            }
-        }
-        
-        return view('home');
+    // Verificar si el usuario ya realizó la encuesta
+    $encuestaRealizada = DB::table('formulario')
+        ->where('encuestas_id', $encuestaId)
+        ->where('user_id', $userId)
+        ->exists();
+
+    if ($encuestaRealizada) {
+        return redirect()->route('home');
     }
+
+    foreach ($request->all() as $name => $value) {
+        if (strpos($name, 'respuesta_') === 0) {
+            $preguntaId = substr($name, strlen('respuesta_'));
+            $respuestaId = $value;
+
+            // Insertar los datos directamente en la tabla "formulario"
+            DB::table('formulario')->insert([
+                'encuestas_id' => $encuestaId,
+                'preguntas_id' => $preguntaId,
+                'respuesta_id' => $respuestaId,
+                'user_id' => $userId,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
+    }
+
+    return view('home');
+}
+
     
    
 }
