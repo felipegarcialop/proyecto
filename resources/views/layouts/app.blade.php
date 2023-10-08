@@ -136,7 +136,7 @@
         <nav class="navbar navbar-expand-md navbar-light" style="background-color: #0d374f;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="/imagen/logo1.png" class="card-img-bottom" style="height: 50px">
+                <img src="/imagen/logo1.png" class="card-img-bottom" style="height: 60px">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
