@@ -43,16 +43,24 @@
 
 <div class="container text-center">
     <div class="row">
-        <div class="col">
-            @foreach ($datos as $index => $dato)
+        <div class="view-container">
+        @foreach ($datos as $index => $dato)
             @php
             $colorClass = 'btn-color-' . (($index % 6) + 1);
             @endphp
-            <button  style="border:none; background-color: #f8fafc; width: 200px; height: 100px; ">
-            <a href="{{ route('Irecursos',$dato->id) }}" style="color: black" 
-            class="btn btn-lg {{ $colorClass }} me-md-4  rounded-pill">{{ $dato->nombre }}</a>
-            </button>
+            <div class="view-card">
+                <div class="card" >
+                    <div class="card-body">
+                        <h3 class="card-title">{{ $dato->Nombre }}</h3>
+                        <a href="{{ route('Irecursos',$dato->id) }}" style="color: black"
+                        class="btn btn {{ $colorClass }} view-btn rounded-pill">Ver </a>
+                    </div>
+                </div>
+            </div>
         @endforeach
+    </div>
+        
+        
         @role("Admin")
         <button class="btn">
             <a href="{{ route('recusos.create') }}" class="btn btn-secondary btn-sm float-right"  data-placement="left">

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Grado;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -18,6 +18,7 @@ class Instituciones extends Migration
             $table->bigIncrements('id');
             $table->string('Nombre');
             
+            
             $table->timestamps();
         });
     }
