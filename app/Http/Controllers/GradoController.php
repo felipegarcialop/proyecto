@@ -73,11 +73,13 @@ class GradoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        $grado = Grado::find($id);
+{
+    $grado = Grado::find($id);
+    $grupo = Grupo::pluck('descripcion', 'id'); // Agregar esta línea
 
-        return view('grado.edit', compact('grado'));
-    }
+    return view('grado.edit', compact('grado', 'grupo')); // Pasar la variable $grupo a la vista
+}
+
 
     /**
      * Update the specified resource in storage.

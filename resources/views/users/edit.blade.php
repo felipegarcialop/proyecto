@@ -46,6 +46,18 @@
             {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
         </div>
     </div>
+    <div class="form-group">
+        <strong>Grado y Grupo:</strong>
+        {!! Form::select('grado_id', $grados, null, ['placeholder' => 'Seleccione un Grado', 'class' => 'form-control']) !!}
+    </div>
+</div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Escuela:</strong>
+            {!! Form::select('institucion_id', $instituciones, null, ['placeholder' => 'Seleccione una escuela', 'class' => 'form-control']) !!}
+        </div>
+    </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Rol:</strong>

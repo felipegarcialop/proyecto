@@ -19,10 +19,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Grado extends Model
 {
-    
     static $rules = [
-		'descripcion' => 'required',
-		'grupo_id' => 'required',
+        'descripcion' => 'required',
+        'grupo_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -32,8 +31,7 @@ class Grado extends Model
      *
      * @var array
      */
-    protected $fillable = ['descripcion','grupo_id'];
-
+    protected $fillable = ['descripcion', 'grupo_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -42,6 +40,4 @@ class Grado extends Model
     {
         return $this->hasOne('App\Models\Grupo', 'id', 'grupo_id');
     }
-    
-
 }

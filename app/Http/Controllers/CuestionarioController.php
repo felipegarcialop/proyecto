@@ -28,53 +28,63 @@ class CuestionarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function mostrarCuestionarios($id)
-    {
-        $encuestaId = $id;
+{
+    $encuestaId = $id;
 
-        // Utilizamos groupBy para agrupar por la pregunta_id
-        $cuestionariosGrouped = Cuestionario::with(['pregunta', 'repuesta'])
-            ->whereHas('pregunta.encuesta', function ($query) use ($encuestaId) {
-                $query->where('id', $encuestaId);
-            })
-            ->get()
-            ->groupBy('pregunta_id'); // Agrupar por pregunta_id
+    // Obtén la información de la encuesta, incluyendo su título
+    $encuesta = Encuesta::find($encuestaId);
 
-        // Ahora tenemos una colección de preguntas con sus respuestas agrupadas
-        // Para evitar repeticiones de preguntas, tomamos solo el primer elemento de cada grupo
-        // Asignamos el ID de la pregunta como clave del array
+    // Verifica si la encuesta existe
+    if (!$encuesta) {
+        return redirect()->route('PTemas')->with('error', 'No existe encuesta.');
+    }
+
+    // Agrupamos cuestionarios por pregunta_id
+    $cuestionariosGrouped = Cuestionario::with(['pregunta', 'repuesta'])
+        ->whereHas('pregunta.encuesta', function ($query) use ($encuestaId) {
+            $query->where('id', $encuestaId);
+        })
+        ->get()
+        ->groupBy('pregunta_id'); // Agrupar por pregunta_id
+
+    if ($cuestionariosGrouped->isEmpty()) {
+        return view('cuestionarios', [
+            'encuesta' => $encuesta,
+            'cuestionarios' => collect(),
+            'respuestasPorPregunta' => [],
+            'id' => $id,
+            'con' => (object) ['con' => 0], // Definir un valor por defecto
+            'error' => 'No existen cuestionarios para esta encuesta.'
+        ]);
+    }
+
     $cuestionarios = collect();
     foreach ($cuestionariosGrouped as $preguntaId => $group) {
         $cuestionarios->put($preguntaId, $group->first());
     }
 
-        
-        //$respuestas = Repuesta::all();
+    $respuestasPorPregunta = [];
+    foreach ($cuestionarios as $preguntaId => $cuestionario) {
+        $respuestas = DB::table('encuestas')
+            ->join('preguntas', 'preguntas.encuesta_id', '=', 'encuestas.id')
+            ->join('cuestionarios', 'cuestionarios.pregunta_id', '=', 'preguntas.id')
+            ->join('repuestas', 'cuestionarios.repuesta_id', '=', 'repuestas.id')
+            ->where('cuestionarios.pregunta_id', $preguntaId)
+            ->where('encuestas.id', $encuestaId)
+            ->select('repuestas.id', 'repuestas.Respuestas') // Agregamos el campo 'id' de respuestas
+            ->get();
 
-        
-        $respuestasPorPregunta = [];
-foreach ($cuestionarios as $preguntaId => $cuestionario) {
-    $respuestas = DB::table('encuestas')
-        ->join('preguntas', 'preguntas.encuesta_id', '=', 'encuestas.id')
-        ->join('cuestionarios', 'cuestionarios.pregunta_id', '=', 'preguntas.id')
-        ->join('repuestas', 'cuestionarios.repuesta_id', '=', 'repuestas.id')
-        ->where('cuestionarios.pregunta_id', $preguntaId)
-        ->where('encuestas.id', $encuestaId)
-        ->select('repuestas.id', 'repuestas.Respuestas') // Agregamos el campo 'id' de respuestas
-        ->get();
-        
-    $respuestasPorPregunta[$preguntaId] = $respuestas;
-}
-    
-
-
-        $con = DB::selectone ("select count(*) con from preguntas where encuesta_id = {$id}");
-
-        //dd($respuestas);
-        return view('cuestionarios', compact('cuestionarios', 'respuestasPorPregunta', 'id', 'con'));
-
-        
+        $respuestasPorPregunta[$preguntaId] = $respuestas;
     }
 
+    // Contar las preguntas
+    $con = DB::table('preguntas')->where('encuesta_id', $id)->count();
+
+    return view('cuestionarios', compact('cuestionarios', 'respuestasPorPregunta', 'id', 'con', 'encuesta'));
+}
+
+    
+    
     
 
     public function index()
@@ -151,6 +161,7 @@ foreach ($cuestionarios as $preguntaId => $cuestionario) {
     public function edit($id)
     {
         $cuestionario = Cuestionario::find($id);
+       
 
         return view('cuestionario.edit', compact('cuestionario'));
     }

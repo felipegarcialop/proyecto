@@ -38,7 +38,7 @@
                                         
 										<th>Nombre</th>
 										<th>Descripcion</th>
-										<th>Fecha</th>
+										<th>fecha</th>
 
                                         <th></th>
                                     </tr>
@@ -50,7 +50,7 @@
                                             
 											<td>{{ $tema->Nombre }}</td>
 											<td>{{ $tema->descripcion }}</td>
-											<td>{{ $tema->Fecha }}</td>
+											<td>{{ $tema->fecha }}</td>
 
                                             <td>
                                                 <form action="{{ route('temas.destroy',$tema->id) }}" method="POST">

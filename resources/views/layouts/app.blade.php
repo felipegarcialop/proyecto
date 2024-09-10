@@ -39,17 +39,7 @@
             position: relative;
         }
         
-        footer {
-            background-color: #f2d8b7;
-            position: sticky;
-            bottom: 0;
-            width: 100%;
-            height: 55px;
-            color: white;
-            z-index: 1; /* Establecer el valor del z-index */
-            display: flex; /* Utilizar flexbox */
-            justify-content: flex-end; /* Alinear elementos al lado derecho */
-        }
+        
         .sidebar {
             background-color: #f8f9fa;
             border-right: 1px solid #dee2e6;
@@ -136,8 +126,18 @@
         <nav class="navbar navbar-expand-md navbar-light" style="background-color: #0d374f;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="/imagen/logo1.png" class="card-img-bottom" style="height: 60px">
+                <div style="text-align: right;">
+                    <img src="/imagen/logo1.png" class="card-img-bottom" style="height: 80px;">
+                </div>
                 </a>
+
+                <div class="d-flex justify-content-center align-items-center w-100">
+                    <!-- Texto centrado -->
+                     <span class="navbar-text" style="color: white; font-size: 24px;">
+                        PLATAFORMA WEB DE ORIENTACIÓN SOBRE LOS RIESGOS DEL PHISHING
+                    </span>
+                </div>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -151,18 +151,15 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" style="color: white" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" style="color: white; font-size: 20px;" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link"  style="color: white" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                            
+                           
                         @else
-
+                            
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" style="color: white; font-size: 20px;" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -186,7 +183,7 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="sidebar" style="background-color: #144b69; width: 270px;">
+                <div class="sidebar" style="background-color: #144b69; width: 250px;">
                     <!-- Contenido del sidebar -->
                      <ul class="nav flex-column">
                     
@@ -194,51 +191,52 @@
 
                         <!--Menu Items -->
                         <div class="menu">
-                        @role("Admin") 
-                            <div class="item"><a  href="{{ route('users.index') }}"  style="color: white"><i class="fa fa-regular fa-user"></i>Usuarios</a> </div>
-                            <div class="item"><a  href="{{ route('roles.index') }}"  style="color: white"><i class="fa fa-solid fa-users"></i>Roles</a> </div>
-
-                            <div class="item"><a class="sub-btn" style="color: white"><i class="fa fa-graduation-cap"></i>Datos escolares
+                        @can('role-list','role-create','role-edit','role-delete')
+                            <div class="item"><a  href="{{ route('users.index') }}"  style="color: white; font-size: 20px;"><i class="fa fa-regular fa-user"></i>Usuarios</a> </div>
+                            <div class="item"><a  href="{{ route('roles.index') }}"  style="color: white; font-size: 20px;"><i class="fa fa-solid fa-users"></i>Roles</a> </div>
+                         
+                            <div class="item"><a class="sub-btn" style="color: white; font-size: 20px;"><i class="fa fa-graduation-cap"></i>Datos escolares
                             <!-- dropdown-->
                             <!-- dropdown arrow-->
                             <i class="fas fa-angle-right dropdown"></i>
                             </a>
                             <div class="sub-menu">
-                                <a href="{{ route('grupos.index') }}" class="sub-item">Grupos</a>
-                                <a href="{{ route('grados.index') }}" class="sub-item">Grados</a>
-                                <a href="{{ route('instituciones.index') }}" class="sub-item">Escuelas</a>
+                                <a href="{{ route('grupos.index') }}" class="sub-item" style=" font-size: 20px;">Grupos</a>
+                                <a href="{{ route('grados.index') }}" class="sub-item" style=" font-size: 20px;">Grados</a>
+                                <a href="{{ route('instituciones.index') }}" class="sub-item" style=" font-size: 20px;">Escuelas</a>
                             </div>
                             </div>
                             
-                            <div class="item"><a class="sub-btn"  style="color: white"><i class="fa fa-folder"></i>Recursos
+                            <div class="item"><a class="sub-btn"  style="color: white;font-size: 20px;"><i class="fa fa-folder"></i>Recursos
                             <!-- dropdown-->
                             <!-- dropdown arrow 2-->
                             <i class="fas fa-angle-right dropdown"></i>
                             </a> 
                             <div class="sub-menu">
-                                <a href="{{ route('temas.index') }}" class="sub-item">Temas</a>
-                                <a href="{{ route('apoyos.index') }}" class="sub-item">Instituciones de apoyo</a>
-                                <a href="{{ route('recusos.index') }}" class="sub-item">Material de apoyo</a>
+                                <a href="{{ route('temas.index') }}" class="sub-item"style=" font-size: 20px;">Temas</a>
+                                <a href="{{ route('apoyos.index') }}" class="sub-item"style=" font-size: 20px;">Instituciones de apoyo</a>
+                                <a href="{{ route('recusos.index') }}" class="sub-item"style=" font-size: 20px;">Material de apoyo</a>
                             </div>
                             </div>
-                            <div class="item"><a class="sub-btn"  style="color: white"><i class="fa fa-question"></i>Encuestas
+                            <div class="item"><a class="sub-btn"  style="color: white;font-size: 20px;"><i class="fa fa-question"></i>Encuestas
                             <!-- dropdown-->
                             <!-- dropdown arrow 3-->
                             <i class="fas fa-angle-right dropdown"></i>
                             </a>
                             <div class="sub-menu">
-                                <a href="{{ route('encuestas.index') }}" class="sub-item">Encuestas</a>
-                                <a href="{{ route('preguntas.index') }}" class="sub-item">Preguntas</a>
-                                <a href="{{ route('repuestas.index') }}" class="sub-item">Respuestas</a>
-                                <a href="{{ route('cuestionarios.index') }}" class="sub-item">Cuestionarios</a>
+                                <a href="{{ route('encuestas.index') }}" class="sub-item"style=" font-size: 20px;">Encuestas</a>
+                                <a href="{{ route('preguntas.index') }}" class="sub-item"style=" font-size: 20px;">Preguntas</a>
+                                <a href="{{ route('repuestas.index') }}" class="sub-item"style=" font-size: 20px;">Respuestas</a>
+                                <a href="{{ route('cuestionarios.index') }}" class="sub-item"style=" font-size: 20px;">Cuestionarios</a>
                             </div>
                             </div>
-                          @endrole 
-                            <div class="item"><a  href="{{ route('PTemas') }}"  style="color: white"><i class="fa fa-regular fa-calendar"></i>Temas</a> </div>
-                            <div class="item"><a href="{{ route('Papoyos') }}"  style="color: white"><i class="fa fa-solid fa-landmark"></i>Instituciones de apoyo</a> </div>
-                            <div class="item"><a href="{{ route('Precursos') }}"  style="color: white"><i class="fa fa-regular fa-folder"></i>Material de apoyo</a> </div>
-                            <div class="item"><a href="{{ route('chart.show') }}"  style="color: white"><i class="fa fa-solid fa-table"></i>Resultados</a> </div>
-
+                        @endcan  
+                            <div class="item"><a  href="{{ route('PTemas') }}"  style="color: white;font-size: 20px;"><i class="fa fa-regular fa-calendar"></i>Temas</a> </div>
+                            <div class="item"><a href="{{ route('Papoyos') }}"  style="color: white;font-size: 20px;"><i class="fa fa-solid fa-landmark"></i>Instituciones de apoyo</a> </div>
+                            <div class="item"><a href="{{ route('Precursos') }}"  style="color: white;font-size: 20px;"><i class="fa fa-regular fa-folder"></i>Material de apoyo</a> </div>
+                             
+                            <div class="item"><a href="{{ route('chart.show') }}"  style="color: white;font-size: 20px;"><i class="fa fa-solid fa-table"></i>Resultados</a> </div>
+                           
 
                         </div>
 
@@ -271,8 +269,6 @@
             </div>
         </div>
     </div>
-    <footer>
-        <!--<img src="" style="width: 40px; height: 40px" > -->
-    </footer> 
+   
 </body>
 </html>

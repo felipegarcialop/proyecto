@@ -9,7 +9,7 @@
                         <div class="card-body">
                             <h2 class="card-title text-center">Riesgos en internet</h2>
                             <p class="card-text text-center">
-                                <font size="3" color="#000000"> Bienvenido al sitio informativo sobre los malos usos de internet.
+                                <font size="5" color="#000000"> Bienvenido al sitio informativo sobre los diferentes ciberataques en el internet.
                                     En este sitio encontrarás información detallada sobre las distintas formas en que internet puede ser mal utilizado y cómo protegerse de ellas.
                                 </font>
                             </p>

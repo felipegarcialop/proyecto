@@ -24,10 +24,22 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('Respuesta') }}
-            {{ Form::select('repuesta_id[]', $respuestas,$cuestionario->repuesta_id, ['class' => 'select2-multiple form-control' . ($errors->has('repuesta_id') ? ' is-invalid' : ''),'multiple' => 'multiple','placeholder' => 'Repuesta']) }}
-            {!! $errors->first('repuesta_id', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
+    {{ Form::label('repuesta_id', 'Respuestas') }}
+    {{ Form::select('repuesta_id[]', $res->pluck('Respuestas', 'id')->map(function($item, $key) use ($res) {
+        $Valor = $res->firstWhere('id', $key)->Valor;
+        return "$item - $Valor";
+    })->toArray(), $cuestionario->repuesta_id, [
+        'class' => 'select2-multiple form-control' . ($errors->has('repuesta_id') ? ' is-invalid' : ''),
+        'multiple' => 'multiple',
+        'placeholder' => 'Seleccionar respuestas'
+    ]) }}
+    {!! $errors->first('repuesta_id', '<div class="invalid-feedback">:message</div>') !!}
+</div>
+
+
+        
+
+
 
     </div>
     <div class="box-footer mt-2 d-md-flex justify-content-md-end">

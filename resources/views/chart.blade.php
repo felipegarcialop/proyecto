@@ -6,10 +6,7 @@
 <head>
     <title>Gráficos por Encuesta</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Añadir enlaces a archivos de Bootstrap si estás utilizando Bootstrap -->
-    <!-- Ejemplo: <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     <style>
-        /* Agrega estilos personalizados si es necesario */
         body, html {
             height: 100%;
         }
@@ -24,7 +21,7 @@
         }
         .adjusted-average {
             font-weight: bold;
-            color: green; /* Cambiar el color según tus preferencias */
+            color: green;
         }
     </style>
 </head>
@@ -38,6 +35,7 @@
                 <div class="card-details">
                     <p class="total-score">Puntuación Total: {{ $encuestaData['totalScore'] }}</p>
                     <p class="adjusted-average">Promedio Ajustado: {{ number_format($encuestaData['adjustedAverage'], 2) }}%</p>
+                    <p>Total de Preguntas: {{ $encuestaData['totalQuestions'] }}</p> <!-- Mostrar total de preguntas -->
                 </div>
                 <div class="card-body">
                     <canvas id="myChart{{ str_replace(' ', '_', $encuestaTitulo) }}" width="400" height="400"></canvas>
@@ -45,7 +43,7 @@
                         var ctx = document.getElementById('myChart{{ str_replace(' ', '_', $encuestaTitulo) }}').getContext('2d');
                         var data{{ str_replace(' ', '_', $encuestaTitulo) }} = @json($encuestaData['data']);
 
-                        var labels{{ str_replace(' ', '_', $encuestaTitulo) }} = data{{ str_replace(' ', '_', $encuestaTitulo) }}.map(item => item.Pregunta);
+                        var labels{{ str_replace(' ', '_', $encuestaTitulo) }} = data{{ str_replace(' ', '_', $encuestaTitulo) }}.map(item => 'Pregunta ' + item.question_number); // Etiquetas con el número de pregunta
                         var values{{ str_replace(' ', '_', $encuestaTitulo) }} = data{{ str_replace(' ', '_', $encuestaTitulo) }}.map(item => item.Valor);
 
                         var chart{{ str_replace(' ', '_', $encuestaTitulo) }} = new Chart(ctx, {
@@ -64,8 +62,8 @@
                                 scales: {
                                     y: {
                                         beginAtZero: true,
-                                        max: 100, // Establecer límite en el eje Y si es necesario
-                                        position: 'right' // Colocar los valores en el lado derecho
+                                        max: 100,
+                                        position: 'right'
                                     }
                                 }
                             }
@@ -77,8 +75,5 @@
     </div>
 </body>
 </html>
-
-
-
 
 @endsection

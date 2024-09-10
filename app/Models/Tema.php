@@ -24,7 +24,7 @@ class Tema extends Model
     static $rules = [
 		'Nombre' => 'required',
 		'descripcion' => 'required',
-		'Fecha' => 'required',
+		
     ];
 
     protected $perPage = 20;
@@ -34,7 +34,7 @@ class Tema extends Model
      *
      * @var array
      */
-    protected $fillable = ['Nombre','descripcion','Fecha'];
+    protected $fillable = ['Nombre','descripcion'];
 
 
 

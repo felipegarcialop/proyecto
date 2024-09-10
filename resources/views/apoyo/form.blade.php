@@ -9,7 +9,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('descripcion') }}
-            {{ Form::text('descripcion', $apoyo->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion de la institucion de apoyo']) }}
+            {{ Form::textarea('descripcion', $apoyo->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion de la institucion de apoyo']) }}
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">

@@ -24,7 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'grado_id',
-        'institucion_id'
+        'institucion_id',
     ];
 
     /**
@@ -45,4 +45,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Relación con el modelo Grado
+     */
+    public function grado()
+    {
+        return $this->belongsTo(Grado::class);
+    }
+
+    /**
+     * Relación con el modelo Institucione
+     */
+    public function institucion()
+    {
+        return $this->belongsTo(Institucione::class);
+    }
 }

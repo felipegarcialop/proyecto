@@ -1,4 +1,9 @@
 @extends('layouts.app')
+
+@section('template_title')
+    {{ __('Create') }} users
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -47,11 +52,12 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Grado:</strong>
-            {!! Form::select('grado_id', $grados->pluck('descripcionGrupo', 'id'), null, ['placeholder' => 'Seleccione un grado', 'class' => 'form-control']) !!}
-        </div>
+    <div class="form-group">
+        <strong>Grado y Grupo:</strong>
+        {!! Form::select('grado_id', $grados, null, ['placeholder' => 'Seleccione un Grado', 'class' => 'form-control']) !!}
     </div>
+</div>
+
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Escuela:</strong>

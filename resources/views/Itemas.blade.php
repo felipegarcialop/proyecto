@@ -1,31 +1,47 @@
 @extends('layouts.app')
+
 <style>
     .uppercase-text {
         text-transform: uppercase;
     }
+    .description {
+        white-space: pre-line; /* Mantiene los saltos de línea del texto */
+    }
+    .text-justify {
+        text-align: justify;
+    }
 </style>
+
 @section('content')
-<a href="{{ route('PTemas') }}" style="text-decoration: none; color: black"><i class="fa fa-solid fa-arrow-left"></i> Regresar</a>
-    <div class= "container">
+    <a href="{{ route('PTemas') }}" style="text-decoration: none; color: black"><i class="fa fa-solid fa-arrow-left"></i> Regresar</a>
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-11">
                 <div class="card" style="border:none">
                     <div class="card-body">
-                        <h1 class="text-center uppercase-text">{{ $dato->Nombre }}</h1>
-                    </div>
-                    <div class= "card-body">
-                        <p>{{ $dato-> descripcion}}</p>
-                        <p>{{ $dato-> Fecha}}</p>
-                        
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @elseif(isset($dato))
+                            <h1 class="text-center uppercase-text">{{ $dato->Nombre }}</h1>
+                            <p class="description text-justify">{{ $dato->descripcion }}</p>
+                            <p>{{ $dato->fecha }}</p>
+
+                            <div class="button-container text-center">
+                                <a href="{{ route('Papoyos') }}" class="btn btn-primary btn-sm float-left">Material de Apoyo</a>
+                                <a href="{{ url('/cuestionario/' . $dato->id) }}" class="btn btn-danger btn-sm float-right">Encuesta</a>
+                            </div>
+                        @else
+                            <div class="alert alert-danger">
+                                Encuesta no existe.
+                            </div>
+                        @endif
                     </div>
 
-                     <button class="btn">
-                        <a href='/cuestionario/{{$dato->id}}' class="btn btn-secondary btn-sm float-right"  
-                        data-placement="left">Ensuesta
-                        </a>
-                    </button>
-                    <div class= "card-body">
-                        <!--zona para imagen-->
+                    <div class="card-body">
+                        <!-- zona para imagen -->
+                    </div>
                 </div>
             </div>
         </div>

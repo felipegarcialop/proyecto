@@ -43,7 +43,9 @@
 
 <div class="container text-center">
     <div class="row">
-        <div class="view-container">
+    <h1 class="text-center mb-4" >Material de Apoyo</h1>
+
+
         @foreach ($datos as $index => $dato)
             @php
             $colorClass = 'btn-color-' . (($index % 6) + 1);
@@ -51,7 +53,7 @@
             <div class="view-card">
                 <div class="card" >
                     <div class="card-body">
-                        <h3 class="card-title">{{ $dato->Nombre }}</h3>
+                        <h3 class="card-title">{{ $dato->nombre }}</h3>
                         <a href="{{ route('Irecursos',$dato->id) }}" style="color: black"
                         class="btn btn {{ $colorClass }} view-btn rounded-pill">Ver </a>
                     </div>
@@ -59,17 +61,24 @@
             </div>
         @endforeach
     </div>
-        
-        
+
         @role("Admin")
-        <button class="btn">
-            <a href="{{ route('recusos.create') }}" class="btn btn-secondary btn-sm float-right"  data-placement="left">
-                <i class="fa fa-regular fa-plus"></i>
-            </a>
-        </button>
-        @endrole
+        <div class="view-card">
+            <div class="card" style="border:none">
+                <div class="card-body">
+
+                    <button class="btn">
+                        <a href="{{ route('recusos.create') }}" class="btn btn-secondary btn-sm float-right"  data-placement="left">
+                            <i class="fa fa-regular fa-plus"></i>
+                        </a>
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>
+
+        @endrole
+        
 </div>
+
 
 @endsection

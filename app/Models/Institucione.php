@@ -11,15 +11,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property $Nombre
  * @property $created_at
  * @property $updated_at
- *
- * @package App
- * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class Institucione extends Model
 {
-    
     static $rules = [
-		'Nombre' => 'required',
+        'Nombre' => 'required',
     ];
 
     protected $perPage = 20;
@@ -30,7 +26,4 @@ class Institucione extends Model
      * @var array
      */
     protected $fillable = ['Nombre'];
-
-
-
 }
