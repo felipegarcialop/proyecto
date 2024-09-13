@@ -19,8 +19,11 @@ class UserController extends Controller
         // Carga las relaciones 'grado.grupo' e 'institucion' para evitar consultas adicionales en la vista
         $data = User::with('grado.grupo', 'institucion')->paginate(5);
 
-        return view('users.index', compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        // Pasa los datos a la vista y calcula el índice para la numeración de filas
+        return view('users.index', [
+            'data' => $data,
+            'i' => ($request->input('page', 1) - 1) * 5
+        ]);
     }
 
     public function create()

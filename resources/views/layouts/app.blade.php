@@ -18,6 +18,10 @@
     <script src="/ruta/a/tu/script/jquery.min.js"></script>
     <script src="/ruta/a/tu/script/bootstrap.min.js"></script>
 
+       <!-- paginacion de los usuarios -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -195,6 +199,18 @@
                             <div class="item"><a  href="{{ route('users.index') }}"  style="color: white; font-size: 20px;"><i class="fa fa-regular fa-user"></i>Usuarios</a> </div>
                             <div class="item"><a  href="{{ route('roles.index') }}"  style="color: white; font-size: 20px;"><i class="fa fa-solid fa-users"></i>Roles</a> </div>
                          
+                            <div class="item"><a class="sub-btn" style="color: white; font-size: 20px;"><i class="fa fa-graduation-cap"></i>Aulas
+                            <!-- dropdown-->
+                            <!-- dropdown arrow-->
+                            <i class="fas fa-angle-right dropdown"></i>
+                            </a>
+                            <div class="sub-menu">
+                                <a href="{{ route('docentes.index') }}" class="sub-item" style=" font-size: 20px;">Docentes</a>
+                                <a href="{{ route('alumnos.index') }}" class="sub-item" style=" font-size: 20px;">Alumnos</a>
+                                <a href="{{ route('a-aulas.index') }}" class="sub-item" style=" font-size: 20px;">Asigna Aula</a>
+                            </div>
+                            </div>
+
                             <div class="item"><a class="sub-btn" style="color: white; font-size: 20px;"><i class="fa fa-graduation-cap"></i>Datos escolares
                             <!-- dropdown-->
                             <!-- dropdown arrow-->

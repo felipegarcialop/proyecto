@@ -8,6 +8,10 @@ use App\Http\Controllers\IapoyosController;
 use App\Http\Controllers\PrecursosController;
 use App\Http\Controllers\IrecursosController;
 use App\Http\Controllers\CuestionarioController;
+use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\AAulaController;
+
 
 
 use App\Http\Controllers\ChartController;
@@ -48,6 +52,9 @@ Route::resource('ponderaciones', App\Http\Controllers\PonderacioneController::cl
 Route::resource('cuestionarios', App\Http\Controllers\CuestionarioController::class);
 Route::resource('apoyos', App\Http\Controllers\ApoyoController::class);
 Route::resource('recusos', App\Http\Controllers\RecusoController::class);
+Route::resource('docentes', App\Http\Controllers\DocenteController::class);
+Route::resource('alumnos', App\Http\Controllers\AlumnoController::class);
+Route::resource('a-aulas', App\Http\Controllers\AAulaController::class);
 
 
 Route::get('/PTemas', [PtemasController::class, 'index'])->name('PTemas');

@@ -1,6 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    /* Estilos para la paginación personalizada */
+    .pagination-custom {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .pagination-custom a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        color: #007bff; /* Color azul */
+        background-color: #f8f9fa;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        text-decoration: none;
+        margin: 0 5px;
+    }
+    .pagination-custom a.disabled {
+        color: #6c757d;
+        border-color: #6c757d;
+        pointer-events: none;
+    }
+    .pagination-custom a:hover {
+        background-color: #007bff;
+        color: #ffffff;
+    }
+</style>
+
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
@@ -65,5 +97,24 @@
     @endforeach
 </table>
 
-{!! $data->render() !!}
+<!-- Paginación -->
+<div class="pagination-custom">
+    <!-- Botón Anterior -->
+    <a href="{{ $data->previousPageUrl() }}" class="@if(!$data->previousPageUrl()) disabled @endif">
+        <i class="fa fa-chevron-left"></i>
+    </a>
+
+    <!-- Botones de Páginas -->
+    @for ($i = 1; $i <= $data->lastPage(); $i++)
+        <a href="{{ $data->url($i) }}" class="@if($data->currentPage() == $i) active @endif">
+            {{ $i }}
+        </a>
+    @endfor
+
+    <!-- Botón Siguiente -->
+    <a href="{{ $data->nextPageUrl() }}" class="@if(!$data->nextPageUrl()) disabled @endif">
+        <i class="fa fa-chevron-right"></i>
+    </a>
+</div>
+
 @endsection
