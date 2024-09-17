@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Docente;
 use App\Models\User;
+use App\Models\Grado;
+use App\Models\Grupo;
 use Illuminate\Http\Request;
 
 /**
@@ -17,9 +19,17 @@ class DocenteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $docentes = Docente::paginate();
+        $search = $request->input('search'); // Obtener el término de búsqueda
+
+        if ($search) {
+            $docentes = Docente::whereHas('user', function ($query) use ($search) {
+                $query->where('name', 'LIKE', "%$search%");
+            })->paginate();
+        } else {
+            $docentes = Docente::paginate();
+        }
 
         return view('docente.index', compact('docentes'))
             ->with('i', (request()->input('page', 1) - 1) * $docentes->perPage());
@@ -33,11 +43,12 @@ class DocenteController extends Controller
     public function create()
     {
         $docente = new Docente();
-        // Obtener solo usuarios con rol de 'docente'
-        $user = User::role('docente')->pluck('name', 'id');
-        return view('docente.create', compact('docente', 'user'));
-    }
+        $users = User::role('docente')->pluck('name', 'id');
+        $grados = Grado::pluck('nombre', 'id');
+        $grupos = Grupo::pluck('nombre', 'id');
 
+        return view('docente.create', compact('docente', 'users', 'grados', 'grupos'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -47,12 +58,20 @@ class DocenteController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Docente::$rules);
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'grado_id' => 'required|exists:grados,id',
+            'grupo_id' => 'required|exists:grupos,id'
+        ]);
 
-        $docente = Docente::create($request->all());
+        $user = User::find($request->input('user_id'));
+        $docente = Docente::updateOrCreate(
+            ['user_id' => $user->id],
+            ['grado_id' => $request->input('grado_id'), 'grupo_id' => $request->input('grupo_id')]
+        );
 
         return redirect()->route('docentes.index')
-            ->with('success', 'Docente created successfully.');
+            ->with('success', 'Docente creado/actualizado correctamente.');
     }
 
     /**
@@ -77,8 +96,11 @@ class DocenteController extends Controller
     public function edit($id)
     {
         $docente = Docente::find($id);
+        $users = User::role('docente')->pluck('name', 'id');
+        $grados = Grado::pluck('nombre', 'id');
+        $grupos = Grupo::pluck('nombre', 'id');
 
-        return view('docente.edit', compact('docente'));
+        return view('docente.edit', compact('docente', 'users', 'grados', 'grupos'));
     }
 
     /**
@@ -90,12 +112,20 @@ class DocenteController extends Controller
      */
     public function update(Request $request, Docente $docente)
     {
-        request()->validate(Docente::$rules);
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'grado_id' => 'required|exists:grados,id',
+            'grupo_id' => 'required|exists:grupos,id'
+        ]);
 
-        $docente->update($request->all());
+        $docente->update([
+            'user_id' => $request->input('user_id'),
+            'grado_id' => $request->input('grado_id'),
+            'grupo_id' => $request->input('grupo_id')
+        ]);
 
         return redirect()->route('docentes.index')
-            ->with('success', 'Docente updated successfully');
+            ->with('success', 'Docente actualizado correctamente');
     }
 
     /**
@@ -105,9 +135,25 @@ class DocenteController extends Controller
      */
     public function destroy($id)
     {
-        $docente = Docente::find($id)->delete();
+        Docente::find($id)->delete();
 
         return redirect()->route('docentes.index')
-            ->with('success', 'Docente deleted successfully');
+            ->with('success', 'Docente eliminado correctamente');
+    }
+
+    // Función para el seguimiento
+    public function seguimiento()
+    {
+        // Obtener todos los docentes con las relaciones necesarias
+        $docentes = Docente::with('user.grado.grupo')->get();
+
+        // Pasar los datos a la vista
+        return view('seguimiento.index', compact('docentes'));
+    }
+
+    public function detalle($id)
+    {
+        $docente = Docente::find($id);
+        return view('docente.detalle', compact('docente'));
     }
 }

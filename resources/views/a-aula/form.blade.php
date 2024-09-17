@@ -16,21 +16,26 @@
 
 <div class="box box-info padding-1">
     <div class="box-body">
+        
         <div class="form-group">
-            {{ Form::label('docente_id') }}
-            {{ Form::select('docente_id', $docentes, $aAula->docente_id, ['class' => 'form-control' . ($errors->has('docente_id') ? ' is-invalid' : ''), 'placeholder' => 'Docente Id']) }}
+            {{ Form::label('docente_id', 'Docente') }}
+            {{ Form::select('docente_id', $docentes, $aAula->docente_id, [
+                'class' => 'form-control' . ($errors->has('docente_id') ? ' is-invalid' : ''),
+                'placeholder' => 'Seleccionar docente'
+            ]) }}
             {!! $errors->first('docente_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
         <div class="form-group">
             {{ Form::label('alumno_id', 'Alumnos') }}
-            {{ Form::select('alumno_id[]', $alumnos, $aAula->alumno_ids, [ // Usa $aAula->alumno_ids
+            {{ Form::select('alumno_id[]', $alumnos, $aAula->alumnos->pluck('id')->toArray(), [
                 'class' => 'select2-multiple form-control' . ($errors->has('alumno_id') ? ' is-invalid' : ''),
                 'multiple' => 'multiple',
                 'placeholder' => 'Seleccionar alumnos'
             ]) }}
             {!! $errors->first('alumno_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>

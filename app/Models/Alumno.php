@@ -33,4 +33,8 @@ class Alumno extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function aulas()
+    {
+        return $this->belongsToMany(AAula::class, 'a_aula_alumno', 'alumno_id', 'a_aula_id');
+    }
 }

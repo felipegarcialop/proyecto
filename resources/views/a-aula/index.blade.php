@@ -17,7 +17,7 @@
 
                             <div class="float-right">
                                 <a href="{{ route('a-aulas.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
-                                    {{ __('Create New') }}
+                                    {{ __('Asignar') }}
                                 </a>
                             </div>
                         </div>
@@ -29,7 +29,17 @@
                         </div>
                     @endif
 
+                    <!-- Formulario de búsqueda -->
                     <div class="card-body">
+                        <form action="{{ route('a-aulas.index') }}" method="GET">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="search" placeholder="Buscar..." value="{{ request()->input('search') }}">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                                </div>
+                            </div>
+                        </form>
+
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
@@ -62,10 +72,10 @@
                                             <td>
                                                 <form action="{{ route('a-aulas.destroy', $aAula->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary" href="{{ route('a-aulas.show', $aAula->id) }}">
-                                                        <i class="fa fa-fw fa-eye"></i> {{ __('Show') }}
+                                                        <i class="fa fa-fw fa-eye"></i> 
                                                     </a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('a-aulas.edit', $aAula->id) }}">
-                                                        <i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}
+                                                        <i class="fa fa-fw fa-edit"></i>
                                                     </a>
                                                     @csrf
                                                     @method('DELETE')

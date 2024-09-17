@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Docente;
+use App\Models\Alumno;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use Illuminate\Support\Arr;
 use App\Models\Institucione;
 use App\Models\Grado;
-use App\Models\Grupo;
 
 class UserController extends Controller
 {
@@ -37,6 +38,27 @@ class UserController extends Controller
 
         return view('users.create', compact('grados', 'instituciones', 'roles'));
     }
+    public function edit($id)
+    {
+        // Obtener el usuario a editar
+        $user = User::find($id);
+        
+        // Obtener los datos para los campos desplegables
+        $roles = Role::pluck('name', 'name')->all();
+        $instituciones = Institucione::pluck('Nombre', 'id');
+        $grados = Grado::join('grupos', 'grados.grupo_id', '=', 'grupos.id')
+            ->select('grados.id',
+                DB::raw('CONCAT(grados.descripcion, " ", grupos.descripcion) as grado_grupo'))
+            ->pluck('grado_grupo', 'grados.id');
+    
+        // Obtener el rol del usuario
+        $userRole = $user->roles->pluck('name')->toArray();
+        
+        // Pasar los datos a la vista
+        return view('users.edit', compact('user', 'roles', 'instituciones', 'grados', 'userRole'));
+    }
+
+
 
     public function store(Request $request)
     {
@@ -45,7 +67,6 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required',
-            
             'institucion_id' => 'required'
         ]);
 
@@ -53,30 +74,14 @@ class UserController extends Controller
         $input['password'] = Hash::make($input['password']);
 
         $user = User::create($input);
-        $user->assignRole($request->input('roles'));
+        $roles = $request->input('roles');
+        $user->assignRole($roles);
+
+        // Llama al método para asignar el usuario a la tabla correspondiente
+        $this->assignUserToRoleTable($user, $roles);
 
         return redirect()->route('users.index')
             ->with('success', 'Usuario creado correctamente');
-    }
-
-    public function show($id)
-    {
-        $user = User::find($id);
-        return view('users.show', compact('user'));
-    }
-
-    public function edit($id)
-    {
-        $user = User::find($id);
-        $roles = Role::pluck('name', 'name')->all();
-        $userRole = $user->roles->pluck('name', 'name')->all();
-        $instituciones = Institucione::pluck('Nombre', 'id');
-        $grados = Grado::join('grupos', 'grados.grupo_id', '=', 'grupos.id')
-            ->select('grados.id',
-                DB::raw('CONCAT(grados.descripcion, " ", grupos.descripcion) as grado_grupo'))
-            ->pluck('grado_grupo', 'grados.id');
-
-        return view('users.edit', compact('user', 'roles', 'userRole', 'instituciones', 'grados'));
     }
 
     public function update(Request $request, $id)
@@ -98,19 +103,68 @@ class UserController extends Controller
         }
 
         $user = User::find($id);
+        $previousRoles = $user->roles->pluck('name')->toArray();
         $user->update($input);
         DB::table('model_has_roles')->where('model_id', $id)->delete();
+        $roles = $request->input('roles');
+        $user->assignRole($roles);
 
-        $user->assignRole($request->input('roles'));
+        // Llama al método para asignar el usuario a la tabla correspondiente
+        $this->assignUserToRoleTable($user, $roles, $previousRoles);
 
         return redirect()->route('users.index')
             ->with('success', 'Usuario actualizado correctamente');
     }
 
+    private function assignUserToRoleTable($user, $roles, $previousRoles = [])
+    {
+        // Elimina al usuario de la tabla correspondiente si tenía un rol previo
+        foreach ($previousRoles as $role) {
+            if (!in_array($role, $roles)) {
+                if ($role == 'docente') {
+                    Docente::where('user_id', $user->id)->delete();
+                } elseif ($role == 'alumno') {
+                    Alumno::where('user_id', $user->id)->delete();
+                }
+            }
+        }
+
+        // Asigna al usuario a la tabla correspondiente según el rol actual
+        foreach ($roles as $role) {
+            if ($role == 'docente') {
+                Docente::updateOrCreate(
+                    ['user_id' => $user->id],
+                    ['user_id' => $user->id]
+                );
+            } elseif ($role == 'alumno') {
+                Alumno::updateOrCreate(
+                    ['user_id' => $user->id],
+                    ['user_id' => $user->id]
+                );
+            }
+        }
+    }
+
     public function destroy($id)
     {
-        User::find($id)->delete();
+        $user = User::find($id);
+        // Elimina el usuario de las tablas correspondientes
+        $this->removeUserFromRoleTables($user);
+
+        $user->delete();
         return redirect()->route('users.index')
             ->with('success', 'Usuario borrado correctamente');
+    }
+
+    private function removeUserFromRoleTables($user)
+    {
+        $roles = $user->roles->pluck('name')->toArray();
+        foreach ($roles as $role) {
+            if ($role == 'docente') {
+                Docente::where('user_id', $user->id)->delete();
+            } elseif ($role == 'alumno') {
+                Alumno::where('user_id', $user->id)->delete();
+            }
+        }
     }
 }

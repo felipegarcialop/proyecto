@@ -34,4 +34,13 @@ class Docente extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    
+
+    /**
+     * Relación con el modelo AAula (el docente puede tener muchas aulas)
+     */
+    public function aulas()
+    {
+        return $this->hasMany(AAula::class, 'docente_id'); // Relaciona con la tabla AAula usando 'docente_id'
+    }
 }

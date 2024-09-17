@@ -18,20 +18,32 @@ class AAulaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
 {
-    $aAulas = AAula::paginate();
+    $search = $request->input('search');
+    
+    // Construir la consulta base
+    $query = AAula::with(['docente.user', 'alumnos.user.grado.grupo']);
+
+    // Aplicar el filtro de búsqueda si se proporciona un término de búsqueda
+    if ($search) {
+        $query->whereHas('docente.user', function($q) use ($search) {
+            $q->where('name', 'LIKE', "%{$search}%");
+        })->orWhere(function ($q) use ($search) {
+            $q->where('alumno_ids', 'LIKE', "%{$search}%");
+        });
+    }
+
+    $aAulas = $query->paginate();
 
     // Obtener todos los IDs de alumnos en el sistema
-    $alumnos = Alumno::all()->keyBy('id');
-
+    $alumnos = Alumno::with(['user.grado.grupo'])->get()->keyBy('id');
+    
     return view('a-aula.index', compact('aAulas', 'alumnos'))
         ->with('i', (request()->input('page', 1) - 1) * $aAulas->perPage());
 }
 
-
     
-
 
     /**
      * Show the form for creating a new resource.
@@ -39,17 +51,15 @@ class AAulaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        $aAula = new AAula();
-    
-        // Obtener los nombres de los docentes asociados al modelo User
-        $docentes = Docente::with('user')->get()->pluck('user.name', 'id');
-        
-        // Obtener los nombres de los alumnos asociados al modelo User
-        $alumnos = Alumno::with('user')->get()->pluck('user.name', 'id');
-    
-        return view('a-aula.create', compact('aAula', 'docentes', 'alumnos'));
-    }
+{
+    $aAula = new AAula();
+    $docentes = Docente::with('user')->get()->pluck('user.name', 'id');
+    $alumnos = []; // Inicialmente vacío
+
+    return view('a-aula.form', compact('aAula', 'docentes', 'alumnos'));
+}
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -61,15 +71,13 @@ class AAulaController extends Controller
     {
         $request->validate([
             'docente_id' => 'required|exists:docentes,id',
-            'alumno_id' => 'required|array',
-            'alumno_id.*' => 'exists:alumnos,id',
+            'alumno_id' => 'required|array'
         ]);
     
-        // Guardar el registro en la base de datos
-        AAula::create([
-            'docente_id' => $request->input('docente_id'),
-            'alumno_ids' => $request->input('alumno_id'),
-        ]);
+        $aAula = AAula::create($request->all());
+    
+        // Asociar alumnos seleccionados con la AAula
+        $aAula->alumnos()->sync($request->input('alumno_id'));
     
         return redirect()->route('a-aulas.index')
             ->with('success', 'AAula created successfully.');
@@ -79,19 +87,21 @@ class AAulaController extends Controller
     {
         $request->validate([
             'docente_id' => 'required|exists:docentes,id',
-            'alumno_id' => 'required|array',
-            'alumno_id.*' => 'exists:alumnos,id',
+            'alumno_id' => 'required|array'
         ]);
     
-        $aAula->update([
-            'docente_id' => $request->input('docente_id'),
-            'alumno_ids' => $request->input('alumno_id'),
-        ]);
+        $aAula->update($request->all());
+    
+        // Asociar alumnos seleccionados con la AAula
+        $aAula->alumnos()->sync($request->input('alumno_id'));
     
         return redirect()->route('a-aulas.index')
-            ->with('success', 'AAula updated successfully');
+            ->with('success', 'AAula updated successfully.');
     }
-
+    
+    
+    
+    
     /**
      * Display the specified resource.
      *
@@ -117,19 +127,17 @@ class AAulaController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-{
-    $aAula = AAula::find($id);
-
-    // Obtener los nombres de los docentes asociados al modelo User
-    $docentes = Docente::with('user')->get()->pluck('user.name', 'id');
+    public function edit(AAula $aAula)
+    {
+        $docentes = Docente::with('user')->get()->pluck('user.name', 'id');
+        $alumnos = Alumno::whereHas('user', function ($query) use ($aAula) {
+            $query->where('grado_id', $aAula->docente->user->grado_id)
+                  ->where('grupo_id', $aAula->docente->user->grupo_id);
+        })->pluck('user.name', 'id');
     
-    // Obtener los nombres de los alumnos asociados al modelo User
-    $alumnos = Alumno::with('user')->get()->pluck('user.name', 'id');
-    
-    return view('a-aula.edit', compact('aAula', 'docentes', 'alumnos'));
-}
-
+        return view('a-aula.form', compact('aAula', 'docentes', 'alumnos'));
+    }
+        
     /**
      * Update the specified resource in storage.
      *
