@@ -207,7 +207,6 @@
                             <div class="sub-menu">
                                 <a href="{{ route('docentes.index') }}" class="sub-item" style=" font-size: 20px;">Docentes</a>
                                 <a href="{{ route('alumnos.index') }}" class="sub-item" style=" font-size: 20px;">Alumnos</a>
-                                <a href="{{ route('a-aulas.index') }}" class="sub-item" style=" font-size: 20px;">Asigna Aula</a>
                                 <a href="{{ route('seguimiento.index') }}" class="sub-item" style=" font-size: 20px;">Seguimiento</a>
 
                             </div>

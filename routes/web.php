@@ -10,7 +10,6 @@ use App\Http\Controllers\IrecursosController;
 use App\Http\Controllers\CuestionarioController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\AlumnoController;
-use App\Http\Controllers\AAulaController;
 use App\Http\Controllers\SeguimientoController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\RoleController;
@@ -49,7 +48,6 @@ Route::resource('apoyos', App\Http\Controllers\ApoyoController::class);
 Route::resource('recusos', App\Http\Controllers\RecusoController::class);
 Route::resource('docentes', App\Http\Controllers\DocenteController::class);
 Route::resource('alumnos', App\Http\Controllers\AlumnoController::class);
-Route::resource('a-aulas', App\Http\Controllers\AAulaController::class);
 
 // Rutas específicas
 Route::get('/PTemas', [PtemasController::class, 'index'])->name('PTemas');
