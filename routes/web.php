@@ -75,3 +75,9 @@ Route::get('/grafico', [ChartController::class, 'showChart'])->name('chart.show'
 Route::get('/seguimiento', [SeguimientoController::class, 'index'])->name('seguimiento.index');
 Route::get('/seguimiento/alumnos/{id}', [SeguimientoController::class, 'alumnosDelDocente'])->name('docentes.detalle');
 Route::post('/a_aulas', [SeguimientoController::class, 'storeAula'])->name('a_aulas.store');
+
+
+
+
+// Ruta para mostrar los puntajes por alumno
+Route::get('/seguimiento/puntajes/{id}', [ChartController::class, 'showPuntajes'])->name('seguimiento.puntajes');

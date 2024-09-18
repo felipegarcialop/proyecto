@@ -37,4 +37,8 @@ class Alumno extends Model
     {
         return $this->belongsToMany(AAula::class, 'a_aula_alumno', 'alumno_id', 'a_aula_id');
     }
+    public function grado()
+    {
+        return $this->belongsTo(Grado::class, 'grado_id');
+    }
 }

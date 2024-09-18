@@ -49,9 +49,10 @@ class User extends Authenticatable
     /**
      * Relación con el modelo Grado
      */
+   
     public function grado()
     {
-        return $this->belongsTo(Grado::class);
+        return $this->belongsTo('App\Models\Grado', 'grado_id'); // Asegúrate de que 'grado_id' sea el campo correcto en tu base de datos
     }
 
     /**

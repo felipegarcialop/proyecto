@@ -11,44 +11,67 @@ use Illuminate\Http\Request;
 class SeguimientoController extends Controller
 {
     /**
-     * Muestra la vista con los alumnos del grado del docente.
+     * Muestra la lista de docentes con su grado y grupo.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+{
+    // Obtener el usuario autenticado
+    $usuarioAutenticado = auth()->user();
+
+    // Obtener los docentes relacionados con el usuario autenticado
+    // Asumiendo que hay una relación entre Docente y User que se puede filtrar
+    $docentes = Docente::where('user_id', $usuarioAutenticado->id)
+                        ->with('user.grado.grupo')
+                        ->get();
+
+    return view('seguimiento.index', compact('docentes'));
+}
+
+    
+
+    /**
+     * Muestra los alumnos del docente por grado y grupo.
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $docentes = Docente::with('user.grado')->get();
-
-        return view('seguimiento.index', compact('docentes'));
-    }
-
     public function alumnosDelDocente($id)
     {
-        $docente = Docente::find($id);
-
+        // Buscar el docente por su ID y cargar relaciones con usuario, grado y grupo
+        $docente = Docente::with('user.grado.grupo')->find($id);
+    
         if (!$docente) {
             return redirect()->route('seguimiento.index')->with('error', 'Docente no encontrado.');
         }
-
+    
         // Obtener el grado y grupo del docente
         $grado = $docente->user->grado;
-        $grupoId = $grado ? $grado->grupo_id : null;
-
-        // Obtener los alumnos del mismo grado y grupo
-        $alumnos = Alumno::whereHas('user', function ($query) use ($grado, $grupoId) {
-            $query->where('grado_id', $grado ? $grado->id : null)
-                  ->whereHas('grado', function ($q) use ($grupoId) {
-                      $q->where('grupo_id', $grupoId);
-                  });
-        })->get();
-
+        $grupo = $grado ? $grado->grupo : null;
+    
+        // Obtener los alumnos del mismo grado y grupo, ordenados alfabéticamente
+        $alumnos = Alumno::join('users', 'alumnos.user_id', '=', 'users.id') // Unir la tabla 'users' con 'alumnos'
+            ->join('grados', 'users.grado_id', '=', 'grados.id') // Unir la tabla 'grados'
+            ->where('grados.id', $grado ? $grado->id : null) // Filtrar por el ID del grado del docente
+            ->where('grados.grupo_id', $grupo ? $grupo->id : null) // Filtrar por el ID del grupo asociado al grado
+            ->orderBy('users.name', 'asc') // Ordenar por el nombre del usuario
+            ->select('alumnos.*') // Seleccionar solo las columnas de la tabla 'alumnos'
+            ->get();
+    
+        // Retornar la vista con los datos del docente y los alumnos
         return view('seguimiento.alumnos', [
             'docente' => $docente,
             'alumnos' => $alumnos,
         ]);
     }
 
+    /**
+     * Almacena los datos del aula.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function storeAula(Request $request)
     {
         $request->validate([
