@@ -5,7 +5,12 @@
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
+    <style>
+        .font-size-16 {
+            font-size: 16px;
+        }
+    </style>
+    <section class="content container-fluid font-size-16">
         <div class="">
             <div class="col-md-12">
 
@@ -16,7 +21,7 @@
                         <span class="card-title">{{ __('Editar') }} institucion educativa</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('instituciones.update', $institucione->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('instituciones.update', $institucione->id) }}" role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 

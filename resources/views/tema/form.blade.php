@@ -1,5 +1,5 @@
 <div class="box box-info padding-1">
-    <div class="box-body">
+    <div class="box-body font-size-16">
         
         <div class="form-group">
             {{ Form::label('Nombre') }}
@@ -14,7 +14,13 @@
         
 
     </div>
-    <div class="box-footer mt-2 d-md-flex justify-content-md-end">
+    <div class="box-footer mt-2 d-md-flex justify-content-md-end font-size-16">
         <button type="submit" class="btn btn-primary"><i class="fa fa-solid fa-check"></i>{{ __('') }}</button>
     </div>
 </div>
+
+<style>
+    .font-size-16 {
+        font-size: 16px;
+    }
+</style>

@@ -12,11 +12,11 @@
                 @includeif('partials.errors')
 
                 <div class="card card-default">
-                    <div class="card-header">
+                    <div class="card-header" style="font-size: 16px;">
                         <span class="card-title">{{ __('Crear una nueva') }} encuesta</span>
                     </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('encuestas.store') }}"  role="form" enctype="multipart/form-data">
+                    <div class="card-body" style="font-size: 16px;">
+                        <form method="POST" action="{{ route('encuestas.store') }}" role="form" enctype="multipart/form-data">
                             @csrf
 
                             @include('encuesta.form')

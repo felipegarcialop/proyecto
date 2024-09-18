@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
+    <section class="content container-fluid" style="font-size: 16px;">
         <div class="">
             <div class="col-md-12">
 
@@ -16,7 +16,7 @@
                         <span class="card-title">{{ __('Editar') }} semestre</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('grados.update', $grado->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('grados.update', $grado->id) }}" role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 

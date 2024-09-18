@@ -1,49 +1,80 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $apoyo->name ?? "{{ __('Show') Apoyo" }}
+    Apoyo
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="float-left">
-                            <span class="card-title">{{ __('Ver la Institucion de') }} Apoyo</span>
-                        </div>
-                        <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('apoyos.index') }}"> {{ __('Regresar') }}</a>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h5 style="font-size: 16px;">
+                                <span id="card_title">
+                                    {{ __('Instituciones de apoyo') }}
+                                </span>
+                            </h5>
+
+                            <div class="float-right">
+                                <a href="{{ route('apoyos.create') }}" class="btn btn-primary btn-sm" data-placement="left">
+                                    <i class="fa fa-regular fa-plus"></i> {{ __('Agregar') }}
+                                </a>
+                            </div>
                         </div>
                     </div>
+
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p style="font-size: 16px;">{{ $message }}</p>
+                        </div>
+                    @endif
 
                     <div class="card-body">
-                        
-                        <div class="form-group">
-                            <strong>Nombre:</strong>
-                            {{ $apoyo->nombre }}
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead class="thead">
+                                    <tr>
+                                        <th style="font-size: 16px;">No</th>
+                                        <th style="font-size: 16px;">Nombre</th>
+                                        <th style="font-size: 16px;">Descripción</th>
+                                        <th style="font-size: 16px;">Dirección</th>
+                                        <th style="font-size: 16px;">Teléfono</th>
+                                        <th style="font-size: 16px;">Correo</th>
+                                        <th style="font-size: 16px;">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($apoyos as $apoyo)
+                                        <tr>
+                                            <td style="font-size: 16px;">{{ ++$i }}</td>
+                                            <td style="font-size: 16px;">{{ $apoyo->nombre }}</td>
+                                            <td style="font-size: 16px;">{{ $apoyo->descripcion }}</td>
+                                            <td style="font-size: 16px;">{{ $apoyo->direccion }}</td>
+                                            <td style="font-size: 16px;">{{ $apoyo->telefono }}</td>
+                                            <td style="font-size: 16px;">{{ $apoyo->correo }}</td>
+                                            <td>
+                                                <form action="{{ route('apoyos.destroy', $apoyo->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-success" href="{{ route('apoyos.edit', $apoyo->id) }}" style="font-size: 16px;">
+                                                        <i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}
+                                                    </a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm" style="font-size: 16px;">
+                                                        <i class="fa fa-thin fa-trash"></i> {{ __('Eliminar') }}
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="form-group">
-                            <strong>Descripcion:</strong>
-                            {{ $apoyo->descripcion }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Direccion:</strong>
-                            {{ $apoyo->direccion }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Telefono:</strong>
-                            {{ $apoyo->telefono }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Correo:</strong>
-                            {{ $apoyo->correo }}
-                        </div>
-
                     </div>
                 </div>
+                {!! $apoyos->links() !!}
             </div>
         </div>
-    </section>
+    </div>
 @endsection

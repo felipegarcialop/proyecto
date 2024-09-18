@@ -6,9 +6,16 @@
     }
     .description {
         white-space: pre-line; /* Mantiene los saltos de línea del texto */
+        font-size: 18px; /* Tamaño de fuente para la descripción */
     }
     .text-justify {
         text-align: justify;
+    }
+    .custom-title {
+        font-size: 32px; /* Tamaño de fuente para el título */
+    }
+    .button-container a {
+        font-size: 14px; /* Tamaño de fuente para los botones */
     }
 </style>
 
@@ -24,7 +31,7 @@
                                 {{ session('error') }}
                             </div>
                         @elseif(isset($dato))
-                            <h1 class="text-center uppercase-text">{{ $dato->Nombre }}</h1>
+                            <h1 class="text-center uppercase-text custom-title">{{ $dato->Nombre }}</h1>
                             <p class="description text-justify">{{ $dato->descripcion }}</p>
                             <p>{{ $dato->fecha }}</p>
 

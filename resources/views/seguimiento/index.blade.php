@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container">
-    <h2>Seguimiento de Docentes</h2>
+    <h2 class="font-size-16">Seguimiento de Docentes</h2>
     
-    <table class="table">
+    <table class="table font-size-16">
         <thead>
             <tr>
                 <th>Nombre del Docente</th>
@@ -21,11 +21,26 @@
                     <td>{{ $docente->user->grado->grupo->descripcion }}</td>
                     <td>
                         <!-- Botón que redirige a la vista con los alumnos del grado y grupo del docente -->
-                        <a href="{{ route('docentes.detalle', $docente->id) }}" class="btn btn-info">Ver Alumnos</a>
+                        <a href="{{ route('docentes.detalle', $docente->id) }}" class="btn btn-info font-size-16">Ver Alumnos</a>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 </div>
+
+<style>
+    .font-size-16 {
+        font-size: 16px;
+    }
+
+    .table {
+        margin-top: 20px;
+    }
+
+    .btn-info {
+        font-size: 16px; /* Asegura que el botón también tenga el tamaño de letra correcto */
+    }
+</style>
+
 @endsection

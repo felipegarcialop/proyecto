@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
+    <section class="content container-fluid" style="font-size: 16px;">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -19,7 +19,6 @@
                     </div>
 
                     <div class="card-body">
-                        
                         <div class="form-group">
                             <strong>Titulo:</strong>
                             {{ $encuesta->Titulo }}

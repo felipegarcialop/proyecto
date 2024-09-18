@@ -5,7 +5,12 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <style>
+        .font-size-16 {
+            font-size: 16px;
+        }
+    </style>
+    <div class="container-fluid font-size-16">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -17,7 +22,7 @@
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('recusos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('recusos.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
                                 <i class="fa fa-solid fa-plus"></i>{{ __('') }}
                                 </a>
                               </div>
@@ -35,11 +40,9 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-										<th>Nombre</th>
-										<th>Objetivo</th>
-										<th>Descipcion</th>
-
+                                        <th>Nombre</th>
+                                        <th>Objetivo</th>
+                                        <th>Descipcion</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -47,14 +50,12 @@
                                     @foreach ($recusos as $recuso)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $recuso->nombre }}</td>
-											<td>{{ $recuso->objetivo }}</td>
-											<td>{{ $recuso->descipcion }}</td>
-
+                                            <td>{{ $recuso->nombre }}</td>
+                                            <td>{{ $recuso->objetivo }}</td>
+                                            <td>{{ $recuso->descipcion }}</td>
                                             <td>
                                                 <form action="{{ route('recusos.destroy',$recuso->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('recusos.show',$recuso->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-primary" href="{{ route('recusos.show',$recuso->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('recusos.edit',$recuso->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')

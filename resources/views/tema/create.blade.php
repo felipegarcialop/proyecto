@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
+    <section class="content container-fluid font-size-16">
         <div class="row">
             <div class="col-md-12">
 
@@ -16,7 +16,7 @@
                         <span class="card-title">{{ __('Agregar ') }} Tema</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('temas.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('temas.store') }}" role="form" enctype="multipart/form-data">
                             @csrf
 
                             @include('tema.form')
@@ -28,3 +28,9 @@
         </div>
     </section>
 @endsection
+
+<style>
+    .font-size-16 {
+        font-size: 16px;
+    }
+</style>

@@ -11,24 +11,23 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Cuestionario</span>
+                            <span class="card-title" style="font-size: 16px;">{{ __('Show') }} Cuestionario</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('cuestionarios.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('cuestionarios.index') }}" style="font-size: 16px;">{{ __('Back') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Pregunta Id:</strong>
-                            {{ $cuestionario->pregunta_id }}
+                            <strong style="font-size: 16px;">Pregunta Id:</strong>
+                            <span style="font-size: 16px;">{{ $cuestionario->pregunta_id }}</span>
                         </div>
                         <div class="form-group">
-                            <strong>Repuesta Id:</strong>
-                            {{ $cuestionario->repuesta_id }}
+                            <strong style="font-size: 16px;">Repuesta Id:</strong>
+                            <span style="font-size: 16px;">{{ $cuestionario->repuesta_id }}</span>
                         </div>
-                        
 
                     </div>
                 </div>

@@ -7,6 +7,7 @@
         display: flex;
         justify-content: center;
         margin-top: 20px;
+        font-size: 16px; /* Tamaño de letra para la paginación */
     }
     .pagination-custom a {
         display: inline-flex;
@@ -14,7 +15,7 @@
         justify-content: center;
         width: 40px;
         height: 40px;
-        font-size: 18px;
+        font-size: 16px; /* Tamaño de letra para los botones de paginación */
         color: #007bff; /* Color azul */
         background-color: #f8f9fa;
         border: 1px solid #007bff;
@@ -31,11 +32,28 @@
         background-color: #007bff;
         color: #ffffff;
     }
+
+    /* Estilo para el tamaño de la fuente en la tabla */
+    table {
+        font-size: 16px; /* Tamaño de letra para la tabla */
+    }
+
+    /* Estilo para el tamaño de la fuente en los encabezados y otros textos */
+    .card-title, h2 {
+        font-size: 20px; /* Tamaño de letra para el título de la tarjeta y el encabezado */
+    }
+
+    /* Estilo para el título de la vista */
+    .page-title {
+        font-size: 24px; /* Tamaño de letra para el título principal */
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
 </style>
 
 <div class="row">
     <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
+        <div class="page-title">
             <h2>Gestión de usuarios</h2>
         </div>
         <div class="pull-right">

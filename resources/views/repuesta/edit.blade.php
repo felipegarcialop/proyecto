@@ -5,7 +5,13 @@
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
+    <style>
+        .font-size-16 {
+            font-size: 16px;
+        }
+    </style>
+
+    <section class="content container-fluid font-size-16">
         <div class="">
             <div class="col-md-12">
 

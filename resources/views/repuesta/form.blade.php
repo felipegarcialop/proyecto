@@ -1,4 +1,10 @@
-<div class="box box-info padding-1">
+<style>
+    .font-size-16 {
+        font-size: 16px;
+    }
+</style>
+
+<div class="box box-info padding-1 font-size-16">
     <div class="box-body">
         
         <div class="form-group">

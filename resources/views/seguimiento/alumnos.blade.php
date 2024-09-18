@@ -4,30 +4,30 @@
 
 <div class="container">
     <!-- Flecha de regreso -->
-    <a href="{{ route('seguimiento.index') }}" class="btn btn-primary mb-3">
+    <a href="{{ route('seguimiento.index') }}" class="btn btn-primary mb-3 font-size-16">
         <i class="fas fa-arrow-left"></i> Regresar
     </a>
 
     <!-- Título Principal y Nombre del Docente -->
-    <h1>Grado: {{ $docente->user->grado->descripcion }} - Grupo: {{ $docente->user->grado->grupo->descripcion }}</h1>
-    <h2>Docente: {{ $docente->user->name }}</h2>
+    <h1 class="font-size-16">Grado: {{ $docente->user->grado->descripcion }} - Grupo: {{ $docente->user->grado->grupo->descripcion }}</h1>
+    <h2 class="font-size-16">Docente: {{ $docente->user->name }}</h2>
 
     <!-- Tabla de Alumnos -->
     <div class="table-container">
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Nombre del Alumno</th>
+                    <th class="font-size-16">Nombre del Alumno</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($alumnos as $alumno)
                     <tr class="{{ $loop->even ? 'even-row' : 'odd-row' }}">
-                        <td class="selectable" data-url="{{ route('seguimiento.puntajes', $alumno->user_id) }}">{{ $alumno->user->name }}</td>
+                        <td class="selectable font-size-16" data-url="{{ route('seguimiento.puntajes', $alumno->user_id) }}">{{ $alumno->user->name }}</td>
                     </tr>
                 @empty
                     <tr>
-                        <td>No hay alumnos en el mismo grado y grupo.</td>
+                        <td class="font-size-16">No hay alumnos en el mismo grado y grupo.</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -36,6 +36,10 @@
 </div>
 
 <style>
+    .font-size-16 {
+        font-size: 16px;
+    }
+
     .table-container {
         width: 50%; /* Ancho de la tabla al 50% del contenedor */
         margin: 0 auto; /* Centra la tabla horizontalmente */

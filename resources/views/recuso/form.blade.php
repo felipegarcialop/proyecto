@@ -1,4 +1,10 @@
-<div class="box box-info padding-1">
+<style>
+    .font-size-16 {
+        font-size: 16px;
+    }
+</style>
+
+<div class="box box-info padding-1 font-size-16">
     <div class="box-body">
         
         <div class="form-group">
@@ -19,6 +25,6 @@
 
     </div>
     <div class="box-footer mt-2 d-md-flex justify-content-md-end">
-    <button type="submit" class="btn btn-primary"><i class="fa fa-solid fa-check"></i>{{ __('') }}</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-solid fa-check"></i>{{ __('') }}</button>
     </div>
 </div>

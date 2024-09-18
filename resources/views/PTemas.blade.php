@@ -20,11 +20,14 @@
     /* Estilos para los botones */
     .view-btn {
         width: 100px;
-        padding: 5px 0;
+        padding: 10px 0; /* Ajusta el padding para un botón más grande */
         color: white;
         text-decoration: none;
         border-radius: 4px;
         transition: background-color 0.3s ease;
+        font-size: 16px; /* Tamaño de letra del botón */
+        text-align: center; /* Centra el texto en el botón */
+        display: inline-block; /* Ajusta el tamaño del botón al texto y padding */
     }
 
     .btn-color-1 {background-color: #a5e1e9;}
@@ -40,36 +43,35 @@
 </style>
 
 <div class="container text-center">
-    <h1 class="text-center mb-4" >Temas disponibles</h1>
+    <h1 class="text-center mb-4">Temas disponibles</h1>
     <div class="view-container">
         @foreach ($datos as $index => $dato)
             @php
             $colorClass = 'btn-color-' . (($index % 6) + 1);
             @endphp
             <div class="view-card">
-                <div class="card" >
+                <div class="card">
                     <div class="card-body">
                         <h3 class="card-title">{{ $dato->Nombre }}</h3>
-                        <a href="{{ route('Itemas', $dato->id) }}" style="color: black"
-                        class="btn btn {{ $colorClass }} view-btn rounded-pill">Ver </a>
+                        <a href="{{ route('Itemas', $dato->id) }}" class="btn {{ $colorClass }} view-btn rounded-pill">Ver</a>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
     @role("Admin")
-        <div class="view-card">
-            <div class="card" style="border:none">
-                <div class="card-body">
-                    <button class="btn">
-                        <a href="{{ route('temas.create') }}" class="btn btn-secondary btn-sm float-right" data-placement="left">
-                            <i class="fa fa-regular fa-plus"></i>
-                        </a>
-                    </button>
-                </div>
+    <div class="view-card">
+        <div class="card" style="border:none">
+            <div class="card-body">
+                <button class="btn">
+                    <a href="{{ route('temas.create') }}" class="btn btn-secondary btn-sm float-right" data-placement="left">
+                        <i class="fa fa-regular fa-plus"></i>
+                    </a>
+                </button>
             </div>
         </div>
-        @endrole
+    </div>
+    @endrole
 </div>
 
 @endsection
