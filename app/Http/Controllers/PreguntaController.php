@@ -75,9 +75,11 @@ class PreguntaController extends Controller
     public function edit($id)
     {
         $pregunta = Pregunta::find($id);
+        $encuesta = Encuesta::pluck('Titulo', 'id');  // Asegúrate de agregar esto
 
-        return view('pregunta.edit', compact('pregunta'));
+        return view('pregunta.edit', compact('pregunta', 'encuesta'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -87,14 +89,18 @@ class PreguntaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Pregunta $pregunta)
-    {
-        request()->validate(Pregunta::$rules);
+        {
+            // Depurar los datos enviados desde el formulario
+            //dd($request->all());
 
-        $pregunta->update($request->all());
+            request()->validate(Pregunta::$rules);
 
-        return redirect()->route('preguntas.index')
-            ->with('success', 'Pregunta editada correctamente');
-    }
+            $pregunta->update($request->all());
+
+            return redirect()->route('preguntas.index')
+                ->with('success', 'Pregunta editada correctamente');
+        }
+
 
     /**
      * @param int $id

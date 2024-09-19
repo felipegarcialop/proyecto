@@ -161,10 +161,12 @@ class CuestionarioController extends Controller
     public function edit($id)
     {
         $cuestionario = Cuestionario::find($id);
-       
-
-        return view('cuestionario.edit', compact('cuestionario'));
+        $pregunta = Pregunta::pluck('pregunta', 'id');  // Obtener todas las preguntas
+        $res = Repuesta::all();  // Obtener todas las respuestas
+    
+        return view('cuestionario.edit', compact('cuestionario', 'pregunta', 'res'));
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -176,12 +178,24 @@ class CuestionarioController extends Controller
     public function update(Request $request, Cuestionario $cuestionario)
     {
         request()->validate(Cuestionario::$rules);
-
-        $cuestionario->update($request->all());
-
+    
+        // Actualizar la pregunta
+        $cuestionario->pregunta_id = $request->input('pregunta_id');
+    
+        // Actualizar respuestas
+        $respuestas = $request->input('repuesta_id');
+        foreach ($respuestas as $respuesta) {
+            // Aquí puedes actualizar las respuestas asociadas al cuestionario
+            // o eliminarlas y crearlas nuevamente si es necesario
+            $cuestionario->repuesta_id = $respuesta;
+        }
+    
+        $cuestionario->save();
+    
         return redirect()->route('cuestionarios.index')
-            ->with('success', 'Cuestionario editado correctamente');
+            ->with('success', 'Cuestionario actualizado correctamente');
     }
+    
 
     /**
      * @param int $id

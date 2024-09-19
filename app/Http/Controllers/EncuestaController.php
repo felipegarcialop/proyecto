@@ -76,9 +76,10 @@ class EncuestaController extends Controller
     public function edit($id)
     {
         $encuesta = Encuesta::find($id);
-
-        return view('encuesta.edit', compact('encuesta'));
+        $tema = Tema::pluck('Nombre', 'id'); // Asegúrate de obtener los temas
+        return view('encuesta.edit', compact('encuesta', 'tema')); // Pasa la variable $tema a la vista
     }
+    
 
     /**
      * Update the specified resource in storage.

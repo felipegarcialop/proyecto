@@ -22,11 +22,7 @@
 
                             @include('cuestionario.form')
 
-                            <div class="form-group mt-3">
-                                <button type="submit" class="btn btn-primary custom-btn">
-                                    <i class="fa fa-save"></i> {{ __('Guardar') }}
-                                </button>
-                            </div>
+                            
                         </form>
                     </div>
                 </div>
