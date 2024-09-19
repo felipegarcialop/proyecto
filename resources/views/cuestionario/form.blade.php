@@ -23,6 +23,9 @@
         .btn {
             font-size: 16px; /* Tamaño de fuente para los botones */
         }
+        .btn-custom {
+            background-color: #fbcd77;
+        }
     </style>
 </head>
 <body>
@@ -54,8 +57,8 @@
 
             </div>
             <div class="box-footer mt-2 d-md-flex justify-content-md-end">
-                <button type="submit" class="btn btn-primary" style="background-color: #fbcd77; font-size: 16px;">
-                    <i class="fa fa-solid fa-check"></i> {{ __('') }}
+                <button type="submit" class="btn btn-primary btn-custom">
+                    <i class="fa fa-solid fa-check"></i> {{ __('Guardar') }}
                 </button>
             </div>
         </div>
@@ -67,7 +70,7 @@
         $(document).ready(function() {
             // Inicializa Select2 con la opción para seleccionar múltiples
             $('.select2-multiple').select2({
-                placeholder: "Select",
+                placeholder: "Seleccionar respuestas",
                 allowClear: true
             });
         });
