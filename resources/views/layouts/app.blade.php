@@ -193,11 +193,11 @@
                      <ul class="nav flex-column">
                     
                         <!-- Agrega más elementos del sidebar si es necesario -->
-
+                       
                         <!--Menu Items -->
                         <div class="menu">
-                        
-                            <div class="item"><a  href="{{ route('users.index') }}"  style="color: white; font-size: 20px;"><i class="fa fa-regular fa-user"></i>Usuarios</a> </div>
+                        @role("Admin")
+                           <div class="item"><a  href="{{ route('users.index') }}"  style="color: white; font-size: 20px;"><i class="fa fa-regular fa-user"></i>Usuarios</a> </div>
                             <div class="item"><a  href="{{ route('roles.index') }}"  style="color: white; font-size: 20px;"><i class="fa fa-solid fa-users"></i>Roles</a> </div>
                          
                             <div class="item"><a class="sub-btn" style="color: white; font-size: 20px;"><i class="fa fa-graduation-cap"></i>Aulas
@@ -249,6 +249,7 @@
                                 <a href="{{ route('cuestionarios.index') }}" class="sub-item"style=" font-size: 20px;">Cuestionarios</a>
                             </div>
                             </div>
+                        @endrole    
                             <div class="item"><a  href="{{ route('PTemas') }}"  style="color: white;font-size: 20px;"><i class="fa fa-regular fa-calendar"></i>Temas</a> </div>
                             <div class="item"><a href="{{ route('Papoyos') }}"  style="color: white;font-size: 20px;"><i class="fa fa-solid fa-landmark"></i>Instituciones de apoyo</a> </div>
                             <div class="item"><a href="{{ route('Precursos') }}"  style="color: white;font-size: 20px;"><i class="fa fa-regular fa-folder"></i>Material de apoyo</a> </div>
